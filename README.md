@@ -20,7 +20,7 @@ Install Nx globally:
 pnpm add -g nx
 ```
 
-If you choose not to install Nx globally, you will have to prefix `pnpm` to all `nx [...]` commands in this README. For example, `nx test lang-font-picker` becomes `pnpm nx test lang-font-picker`.
+(If you choose not to install Nx globally, you will have to prefix `pnpm` to all `nx [...]` commands in this README. For example, `nx test lang-font-picker` becomes `pnpm nx test lang-font-picker`.)
 
 ## Developer tasks
 

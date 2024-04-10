@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "nx run-many --all -t build",
-    "preinstall": "npx -y only-allow pnpm",
+    "preinstall": "npx only-allow pnpm",
     "test": "nx run-many --all -t test"
   },
   "dependencies": {

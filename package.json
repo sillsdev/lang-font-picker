@@ -1,6 +1,6 @@
 {
   "name": "@packages/source",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -13,6 +13,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
     "@nx/eslint": "18.2.3",
     "@nx/eslint-plugin": "18.2.3",
     "@nx/js": "18.2.3",
@@ -44,6 +46,7 @@
     "prettier": "^2.8.8",
     "typescript": "~5.4.5",
     "vite": "~5.0.13",
+    "vite-plugin-dts": "~3.8.1",
     "vitest": "^1.4.0"
   }
 }

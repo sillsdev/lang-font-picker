@@ -1,1 +1,63 @@
-node_modules
+# Please keep `.eslintignore` and `.prettierignore` in sync
+
+# Generated content
+pnpm-lock.yaml
+
+# Copy everything below from .gitignore into .eslintignore and .prettierignore
+
+# Build output
+build/
+dist/
+out/
+
+# Caches
+.cache
+.*_cache/
+.eslintcache
+.npm
+.nx/cache/
+tmp
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+*-debug.log*
+*-error.log*
+
+# Test coverage
+.lcov
+coverage
+lib-cov
+
+# IDEs
+.idea
+.classpath
+.c9/
+*.launch
+.project
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/*.json
+
+# Runtime data
+pids
+*.pid
+*.pid.lock
+*.seed
+
+# Dependencies
+node_modules/
+
+# Output of 'npm pack'
+*.tgz
+
+# dotenv environment variables
+.env
+.env.local
+.env.*.local
+
+# System files
+.DS_Store
+Thumbs.db

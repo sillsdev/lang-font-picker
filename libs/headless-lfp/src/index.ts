@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 
 import useLanguageFontFinder from './language-font-finder';
-import { FontLFP, convertToFontLFP } from './types';
+import { FontLFP } from './types';
+import { convertToFontLFP } from './utils';
 
 export interface UseLanguageFontFinder {
   fonts: FontLFP[];

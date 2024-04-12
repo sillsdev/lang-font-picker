@@ -3,21 +3,6 @@ export interface FontLFP {
   name: string;
 }
 
-/** Default conversion of LFF font metadata to LFP font metadata. */
-export function convertToFontLFP(font: FontLFF): FontLFP {
-  const { defaultfamily, families } = font;
-  if (!defaultfamily.length) {
-    return { name: '' };
-  }
-
-  const id = defaultfamily[0];
-  if (!(id in families)) {
-    return { name: id };
-  }
-
-  return { name: families[id].family };
-}
-
 /** Font metadata as received from the Language Font Finder (LFF).
  * Must match https://github.com/silnrsi/langfontfinder/blob/main/docs/results.md */
 // ToDo: Write script to auto-generate LFF types if schema becomes available:

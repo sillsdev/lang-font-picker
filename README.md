@@ -4,6 +4,8 @@
 
 ### `pnpm`
 
+Install [pnpm](https://pnpm.io/installation#using-npm) globally:
+
 ```
 npm i -g pnpm
 pnpm i
@@ -14,7 +16,7 @@ After setting up `pnpm`, close and reopen VSCode before continuing to the next s
 
 ### Nx
 
-Install Nx globally:
+Install [Nx](https://nx.dev/getting-started/installation#installing-nx-globally) globally:
 
 ```
 pnpm add -g nx
@@ -90,7 +92,7 @@ nx show project <project> --web
 
 ### Library
 
-For a new project with a library (e.g. an internal utility or reusable component) named <library>:
+For a new project with a library (e.g. an internal utility or reusable component) named `<library>`:
 
 ```bash
 nx g @nx/react:library --bundler=vite --component=false --directory=libs/<library> --unitTestRunner=vitest <library>

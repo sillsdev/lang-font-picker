@@ -41,8 +41,8 @@ where `<target>` is one of
 
 and `<project>` is one of
 
+- `headless-lfp`
 - `lang-font-picker`
-- _more coming soon_
 
 ### Build projects
 
@@ -85,6 +85,22 @@ To see the targets available for a specific `<project>` (e.g., `lang-font-picker
 ```bash
 nx show project <project> --web
 ```
+
+## Create a new React project
+
+### Library
+
+For a new project with a library (e.g. an internal utility or reusable component) named <library>:
+
+```bash
+nx g @nx/react:library --bundler=vite --component=false --directory=libs/<library> --unitTestRunner=vitest <library>
+```
+
+In the new project's folder, in `project.json`, change the `sourceRoot` line to `  "sourceRoot": "{projectRoot}/src",` and delete the `// targets` line.
+
+## Add React content to a project
+
+You can use Nx generators to jump-start a new application, component, hook, etc., such as with https://nx.dev/nx-api/react/generators/component. When first executing a `nx generate ...` or `nx g ...` command, use the `--dry-run` flag to see what files will be created or modified.
 
 ## ToDo: Set up CI!
 

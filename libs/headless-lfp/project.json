@@ -1,8 +1,8 @@
 {
-  "name": "lang-font-picker",
+  "name": "headless-lfp",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "{projectRoot}/src",
-  "projectType": "application",
+  "projectType": "library",
   "tags": [],
   "targets": {}
 }

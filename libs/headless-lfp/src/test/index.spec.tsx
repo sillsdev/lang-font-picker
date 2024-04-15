@@ -11,7 +11,7 @@ describe('useLanguageFontPicker', () => {
     expect(result.current.fonts).toHaveLength(0);
 
     act(() => {
-      result.current.getFonts("ar");
+      result.current.fetchFonts("ar");
     });
 
     // ToDo: Mock out useLanguageFontFinder

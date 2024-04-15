@@ -11,6 +11,11 @@ export interface UseLanguageFontFinder {
   language: string;
 }
 
+export interface LFFOptions {
+  disableLanguageFontFinder?: boolean;
+  customFindFontsFunction?: (lang: string) => Promise<FontLFF[]>;
+}
+
 /** Remove all characters except dash, letters, and numbers. */
 export function sanitizeLang(lang: string): string {
   return lang.replace(/[^a-zA-Z0-9-]/, '');
@@ -20,7 +25,9 @@ const ErrorEmptyLanguages = 'Cannot use empty language.';
 const LFFApiUrl = 'https://lff.api.languagetechnology.org/lang/';
 
 /** Hook for interacting with https://github.com/silnrsi/langfontfinder. */
-export function useLanguageFontFinder(): UseLanguageFontFinder {
+export function useLanguageFontFinder(
+  options: LFFOptions = {},
+): UseLanguageFontFinder {
   const [error, setError] = useState<string | undefined>();
   const [finding, setFinding] = useState(false);
   const [fonts, setFonts] = useState<FontLFF[]>([]);
@@ -43,14 +50,32 @@ export function useLanguageFontFinder(): UseLanguageFontFinder {
         lang = language;
       }
 
-      const url = `${LFFApiUrl}${lang}`;
-      await fetchJSON(url)
-        .then((obj) => setFonts([obj as FontLFF]))
-        .catch(setError);
+      let newError = '';
+      const newFonts: FontLFF[] = [];
 
+      if (!options.disableLanguageFontFinder) {
+        const url = `${LFFApiUrl}${lang}`;
+        await fetchJSON(url)
+          .then((obj) => newFonts.push(obj as FontLFF))
+          .catch((err) => {
+            newError = `${err}`;
+          });
+      }
+
+      if (options.customFindFontsFunction) {
+        await options
+          .customFindFontsFunction(lang)
+          .then((fonts) => newFonts.push(...fonts))
+          .catch((err) => {
+            newError += `${newError ? '\n' : ''}${err}`;
+          });
+      }
+
+      setError(newError);
+      setFonts(newFonts);
       setFinding(false);
     },
-    [language]
+    [language, options],
   );
   return { error, findFonts, finding, fonts, language };
 }

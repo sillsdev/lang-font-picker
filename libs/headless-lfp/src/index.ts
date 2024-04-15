@@ -4,12 +4,12 @@ import useLanguageFontFinder from './language-font-finder';
 import { FontLFP } from './types';
 import { convertToFontLFP } from './utils';
 
-export interface UseLanguageFontFinder {
+export interface UseLanguageFontPicker {
   fonts: FontLFP[];
   getFonts: (language: string) => Promise<void>;
 }
 
-export function useLanguageFontPicker() {
+export function useLanguageFontPicker(): UseLanguageFontPicker {
   const [fonts, setFonts] = useState<FontLFP[]>([]);
 
   const lff = useLanguageFontFinder();
@@ -19,7 +19,7 @@ export function useLanguageFontPicker() {
       await lff.findFonts(language);
       setFonts(lff.fonts.map(convertToFontLFP));
     },
-    [lff]
+    [lff],
   );
 
   return { fonts, getFonts };

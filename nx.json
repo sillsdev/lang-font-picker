@@ -31,6 +31,9 @@
       }
     }
   ],
+  "release": {
+    "projects": ["*", "!lang-font-picker"]
+  },
   "generators": {
     "@nx/react": {
       "application": {

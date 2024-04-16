@@ -130,6 +130,14 @@ In the new project's folder, in `project.json`, change the `sourceRoot` line to 
 
 You can use Nx generators to jump-start a new application, component, hook, etc., such as with https://nx.dev/nx-api/react/generators/component. When first executing a `nx generate ...` or `nx g ...` command, use the `--dry-run` flag to see what files will be created or modified.
 
+## Versions and Releases
+
+See https://nx.dev/features/manage-releases for how to use `nx release` to:
+
+- Update version number across all projects;
+- Auto-update the CHANGELOG;
+- Release the new version of all projects.
+
 ## ToDo: Set up CI!
 
 Nx comes with local caching already built-in (check your `nx.json`). On CI you might want to go a step further.

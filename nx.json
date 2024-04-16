@@ -5,9 +5,11 @@
     "production": [
       "default",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/.babelrc",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js"
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/tsconfig.*",
+      "!{projectRoot}/vite.config.js"
     ],
     "sharedGlobals": []
   },

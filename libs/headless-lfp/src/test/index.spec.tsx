@@ -4,14 +4,13 @@ import { act, renderHook } from '@testing-library/react';
 import useLanguageFontPicker from '../index';
 
 describe('useLanguageFontPicker', () => {
-  it('should render successfully', () => {
-
+  it('should render successfully', async () => {
     const { result } = renderHook(() => useLanguageFontPicker());
 
     expect(result.current.fonts).toHaveLength(0);
 
-    act(() => {
-      result.current.getFonts("ar");
+    await act(async () => {
+      await result.current.fetchFonts("ar");
     });
 
     // ToDo: Mock out useLanguageFontFinder

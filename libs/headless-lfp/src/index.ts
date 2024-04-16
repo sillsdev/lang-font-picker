@@ -1,28 +1,39 @@
 import { useCallback, useState } from 'react';
 
-import useLanguageFontFinder from './language-font-finder';
+import useLanguageFontFinder, { LFFOptions } from './language-font-finder';
 import { FontLFP } from './types';
 import { convertToFontLFP } from './utils';
 
-export interface UseLanguageFontFinder {
+export interface UseLanguageFontPicker {
+  fetchFonts: (language: string) => Promise<void>;
   fonts: FontLFP[];
-  getFonts: (language: string) => Promise<void>;
 }
 
-export function useLanguageFontPicker() {
+export interface LFPOptions extends LFFOptions {
+  onlyOneFont?: boolean;
+}
+
+export function useLanguageFontPicker(
+  options: LFPOptions = {},
+): UseLanguageFontPicker {
+  const { onlyOneFont, ...lffOptions } = options;
+
   const [fonts, setFonts] = useState<FontLFP[]>([]);
 
-  const lff = useLanguageFontFinder();
+  const lff = useLanguageFontFinder(lffOptions);
 
-  const getFonts = useCallback(
+  /** Fetch fonts for the given language tag. */
+  const fetchFonts = useCallback(
     async (language: string) => {
       await lff.findFonts(language);
-      setFonts(lff.fonts.map(convertToFontLFP));
+      setFonts(
+        lff.fonts.slice(0, onlyOneFont ? 1 : undefined).map(convertToFontLFP),
+      );
     },
-    [lff]
+    [lff, onlyOneFont],
   );
 
-  return { fonts, getFonts };
+  return { fetchFonts, fonts };
 }
 
 export default useLanguageFontPicker;

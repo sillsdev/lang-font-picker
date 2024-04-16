@@ -67,13 +67,13 @@ The build artifacts are stored in the output directory `dist/`.
 To check formatting on all projects:
 
 ```bash
-nx format:check
+pnpm format:check
 ```
 
 To fix formatting on all projects:
 
 ```bash
-nx format:write
+pnpm format:write
 ```
 
 To lint a specific `<project>` (e.g., `lang-font-picker`):

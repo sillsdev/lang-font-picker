@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "build": "nx run-many --all -t build",
+    "format:check": "prettier -c .",
+    "format:write": "prettier -w .",
     "lint": "nx run-many --all -t lint",
     "preinstall": "npx only-allow pnpm",
     "test": "nx run-many --all -t test"

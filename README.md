@@ -62,6 +62,32 @@ pnpm build
 
 The build artifacts are stored in the output directory `dist/`.
 
+### Formatting and Linting
+
+To check formatting on all projects:
+
+```bash
+nx format:check
+```
+
+To fix formatting on all projects:
+
+```bash
+nx format:write
+```
+
+To lint a specific `<project>` (e.g., `lang-font-picker`):
+
+```bash
+nx lint <project>
+```
+
+To lint all projects:
+
+```bash
+pnpm lint
+```
+
 ### Run tests
 
 For a specific `<project>` (e.g., `lang-font-picker`):

@@ -10,7 +10,7 @@ describe('useLanguageFontPicker', () => {
     expect(result.current.fonts).toHaveLength(0);
 
     await act(async () => {
-      await result.current.fetchFonts("ar");
+      await result.current.fetchFonts('ar');
     });
 
     // ToDo: Mock out useLanguageFontFinder

@@ -60,6 +60,6 @@ export interface FontFamilyFilesAxesLFF {
 /** https://github.com/silnrsi/langfontfinder/blob/main/docs/results.md#googlefonts-subobjects  */
 export type FontFamilyGoogleFontsLFF = object;
 
-export type FontFamilyStatusLFF = 'current' | 'archived' | 'deprecated';
+export type FontFamilyStatusLFF = "current" | "archived" | "deprecated";
 
 export type FontRoleLFF = { [role: string]: string[] };

@@ -1,7 +1,7 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState } from "react";
 
-import { FontLFF } from './types';
-import { fetchJSON } from './utils';
+import { FontLFF } from "./types";
+import { fetchJSON } from "./utils";
 
 export interface UseLanguageFontFinder {
   error?: string;
@@ -18,20 +18,20 @@ export interface LFFOptions {
 
 /** Remove all characters except dash, letters, and numbers. */
 export function sanitizeLang(lang: string): string {
-  return lang.replace(/[^a-zA-Z0-9-]/, '');
+  return lang.replace(/[^a-zA-Z0-9-]/, "");
 }
 
-const ErrorEmptyLanguages = 'Cannot use empty language.';
-const LFFApiUrl = 'https://lff.api.languagetechnology.org/lang/';
+const ErrorEmptyLanguages = "Cannot use empty language.";
+const LFFApiUrl = "https://lff.api.languagetechnology.org/lang/";
 
 /** Hook for interacting with https://github.com/silnrsi/langfontfinder. */
 export function useLanguageFontFinder(
-  options: LFFOptions = {},
+  options: LFFOptions = {}
 ): UseLanguageFontFinder {
   const [error, setError] = useState<string | undefined>();
   const [finding, setFinding] = useState(false);
   const [fonts, setFonts] = useState<FontLFF[]>([]);
-  const [language, setLanguage] = useState('');
+  const [language, setLanguage] = useState("");
 
   const findFonts = useCallback(
     async (lang: string) => {
@@ -50,7 +50,7 @@ export function useLanguageFontFinder(
         lang = language;
       }
 
-      let newError = '';
+      let newError = "";
       const newFonts: FontLFF[] = [];
 
       if (!options.disableLanguageFontFinder) {
@@ -67,7 +67,7 @@ export function useLanguageFontFinder(
           .customFindFontsFunction(lang)
           .then((fonts) => newFonts.push(...fonts))
           .catch((err) => {
-            newError += `${newError ? '\n' : ''}${err}`;
+            newError += `${newError ? "\n" : ""}${err}`;
           });
       }
 
@@ -75,7 +75,7 @@ export function useLanguageFontFinder(
       setFonts(newFonts);
       setFinding(false);
     },
-    [language, options],
+    [language, options]
   );
   return { error, findFonts, finding, fonts, language };
 }

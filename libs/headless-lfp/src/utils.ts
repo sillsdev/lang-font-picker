@@ -1,4 +1,4 @@
-import { FontLFF, FontLFP } from './types';
+import { FontLFF, FontLFP } from "./types";
 
 /** Given a url, returns the content of the result as a JSON. */
 // ToDo: Add unit tests and verify this works with the LFF api url.
@@ -15,7 +15,7 @@ export async function fetchJSON(url: string): Promise<object> {
 export function convertToFontLFP(font: FontLFF): FontLFP {
   const { defaultfamily, families } = font;
   if (!defaultfamily.length) {
-    return { name: '' };
+    return { name: "" };
   }
 
   const id = defaultfamily[0];

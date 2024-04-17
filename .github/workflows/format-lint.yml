@@ -1,4 +1,4 @@
-name: lint
+name: format-lint
 
 on:
   push:
@@ -26,5 +26,7 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm i
+      - name: Check formatting
+        run: pnpm format:check
       - name: Lint all projects
         run: pnpm lint

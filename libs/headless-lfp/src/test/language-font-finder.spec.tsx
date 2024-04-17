@@ -6,7 +6,7 @@ describe('useLanguageFontFinder', () => {
   it('should render successfully', async () => {
     const { result } = renderHook(() => useLanguageFontFinder());
 
-    const {error,finding } = result.current
+    const { error, finding } = result.current;
     expect(error).toBeFalsy();
     expect(finding).toBeFalsy();
   });
@@ -17,7 +17,7 @@ describe('useLanguageFontFinder', () => {
     expect(result.current.error).toBeFalsy();
 
     await act(async () => {
-     await result.current.findFonts("1");
+      await result.current.findFonts('1');
     });
 
     expect(result.current.error).toBeTruthy();

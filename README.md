@@ -45,6 +45,7 @@ and `<project>` is one of
 
 - `headless-lfp`
 - `lang-font-picker`
+- `unstyled-lfp`
 
 ### Build projects
 

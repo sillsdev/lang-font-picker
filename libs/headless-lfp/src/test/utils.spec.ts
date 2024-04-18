@@ -1,14 +1,14 @@
-import { FontFamilyLFF, FontLFF } from '../types';
-import { convertToFontLFP, fetchJSON } from '../utils';
+import { FontFamilyLFF, FontLFF } from "../types";
+import { convertToFontLFP, fetchJSON } from "../utils";
 
-describe('convertToFontLFP', () => {
+describe("convertToFontLFP", () => {
   const emptyFontLFF: FontLFF = {
-    apiversion: '',
+    apiversion: "",
     defaultfamily: [],
     families: {},
   };
-  const mockId = 'fontsans';
-  const mockName = 'Font Sans';
+  const mockId = "fontsans";
+  const mockName = "Font Sans";
   const mockDefault = [mockId];
   const mockFamily: FontFamilyLFF = {
     distributable: false,
@@ -17,15 +17,15 @@ describe('convertToFontLFP', () => {
   };
   const mockFamilies = { [mockId]: mockFamily };
 
-  it('handles empty `defaultfamilies`', () => {
+  it("handles empty `defaultfamilies`", () => {
     const fontLFP = convertToFontLFP({
       ...emptyFontLFF,
       families: mockFamilies,
     });
-    expect(fontLFP.name).toEqual('');
+    expect(fontLFP.name).toEqual("");
   });
 
-  it('handles empty `families`', () => {
+  it("handles empty `families`", () => {
     const fontLFP = convertToFontLFP({
       ...emptyFontLFF,
       defaultfamily: mockDefault,
@@ -33,7 +33,7 @@ describe('convertToFontLFP', () => {
     expect(fontLFP.name).toEqual(mockId);
   });
 
-  it('gets font name', () => {
+  it("gets font name", () => {
     const fontLFP = convertToFontLFP({
       ...emptyFontLFF,
       defaultfamily: mockDefault,
@@ -43,17 +43,17 @@ describe('convertToFontLFP', () => {
   });
 });
 
-describe('fetchJson', () => {
-  it('throws error on non-JSON url', async () => {
+describe("fetchJson", () => {
+  it("throws error on non-JSON url", async () => {
     await expect(
       async () =>
-        await fetchJSON('https://lff.api.languagetechnology.org/lang/1'),
+        await fetchJSON("https://lff.api.languagetechnology.org/lang/1")
     ).rejects.toThrow();
   });
 
-  it('returns object when url returns valid JSON', async () => {
+  it("returns object when url returns valid JSON", async () => {
     const object: FontLFF = (await fetchJSON(
-      'https://lff.api.languagetechnology.org/lang/kfc',
+      "https://lff.api.languagetechnology.org/lang/kfc"
     )) as FontLFF;
     expect(object).toBeTruthy();
   });

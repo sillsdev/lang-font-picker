@@ -1,4 +1,40 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "git.ignoreLimitWarning": true
+  "editor.formatOnSaveMode": "file",
+  "editor.rulers": [100],
+  "files.associations": {
+    ".eslintignore": "ignore",
+    ".gitignore": "ignore",
+    ".prettierignore": "ignore"
+  },
+  "git.branchProtection": ["main"],
+  "git.ignoreLimitWarning": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["**/*babelrc*.json"],
+      "url": "http://json.schemastore.org/babelrc.json"
+    },
+    {
+      "fileMatch": ["**/*eslintrc*.json"],
+      "url": "http://json.schemastore.org/eslintrc.json"
+    },
+    {
+      "fileMatch": ["**/*prettierrc*.json"],
+      "url": "http://json.schemastore.org/prettierrc.json"
+    },
+    {
+      "fileMatch": ["**/*tsconfig*.json"],
+      "url": "http://json.schemastore.org/tsconfig"
+    }
+  ],
+  "search.exclude": {
+    ".git": true,
+    "node_modules": true,
+    "nx/cache": true,
+    "pnpm-lock.yaml": true
+  },
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  }
 }

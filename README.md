@@ -125,7 +125,14 @@ For a new project with a library (e.g. an internal utility or reusable component
 nx g @nx/react:library --bundler=vite --component=false --directory=libs/<library> --unitTestRunner=vitest <library>
 ```
 
-In the new project's folder, in `project.json`, change the `sourceRoot` line to `  "sourceRoot": "{projectRoot}/src",` and delete the `// targets` line.
+In the new project's folder, in `package.json`:
+
+- change the `version` line to match the version of the other projects;
+
+and in `project.json`:
+
+- change the `sourceRoot` line to `  "sourceRoot": "{projectRoot}/src",`;
+- delete the `// targets` line.
 
 ## Add React content to a project
 

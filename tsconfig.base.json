@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@lfp/headless-lfp": ["libs/headless-lfp/src/index.ts"]
+      "@lfp/headless-lfp": ["libs/headless-lfp/src/index.ts"],
+      "@lfp/unstyled-lfp": ["libs/unstyled-lfp/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

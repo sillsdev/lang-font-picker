@@ -146,10 +146,6 @@ See https://nx.dev/features/manage-releases for how to use `nx release` to:
 - Auto-update the CHANGELOG;
 - Release the new version of all projects.
 
-## ToDo: Set up CI!
+## Development workflow
 
-Nx comes with local caching already built-in (check your `nx.json`). On CI you might want to go a step further.
-
-- [Set up remote caching](https://nx.dev/features/share-your-cache)
-- [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)
-- [Learn more how to setup CI](https://nx.dev/recipes/ci)
+For now, development next-steps and goals can be added to and updated in the [Development To-Do List](DEV_TO_DO.md). After the first release, move dev steps to [issues](https://github.com/sillsdev/lang-font-picker/issues) which can be closed with targeted [pull requests](https://github.com/sillsdev/lang-font-picker/pulls). For broader goals, consider coordinating work with a [GitHub project](https://github.com/sillsdev/lang-font-picker/projects).

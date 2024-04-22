@@ -1,7 +1,11 @@
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
+
+import useLanguageFontPicker, { type LFPOptions } from "@lfp/headless-lfp";
 
 import { lfpClassNames } from "./types";
-import UnstyledFontList, { UnstyledFontListProps } from "./UnstyledFontList";
+import UnstyledFontList, {
+  type UnstyledFontListProps,
+} from "./UnstyledFontList";
 
 export interface UnstyledLanguageFontPickerProps extends UnstyledFontListProps {
   cancel?: () => void;
@@ -11,6 +15,7 @@ export interface UnstyledLanguageFontPickerProps extends UnstyledFontListProps {
   headerText?: ReactElement | string;
   language?: string;
   languageInfo?: ReactElement | string;
+  options?: LFPOptions;
 }
 
 const defaultHeaderText = "Language Font Picker";
@@ -32,13 +37,16 @@ export function UnstyledLanguageFontPicker(
     headerText,
     language,
     languageInfo,
+    options,
   } = props;
+
+  const { fetchFonts, fonts } = useLanguageFontPicker(options);
 
   const fontListProps: UnstyledFontListProps = {
     fontDivider,
     fontRowActions,
     fontRowText,
-    fontRows,
+    fontRows: [...fonts, ...(fontRows ?? [])],
     fontTableHeadActions,
     fontTableHeadText,
   };
@@ -68,7 +76,11 @@ export function UnstyledLanguageFontPicker(
 
       {/* Language */}
       <div className={lfpClassNames.Language}>
-        <input className={lfpClassNames.LanguageInput} type="text">
+        <input
+          className={lfpClassNames.LanguageInput}
+          onSubmit={(e) => fetchFonts(e.currentTarget.value)}
+          type="text"
+        >
           {language}
         </input>
         {typeof languageInfo === "string" ? (

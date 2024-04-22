@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 import { lfpClassNames } from "./types";
 
@@ -12,7 +12,7 @@ export interface UnstyledFontListProps {
 }
 
 interface FontProps {
-  name: ReactElement;
+  name: string;
 }
 
 interface FontRowProps extends Partial<FontProps> {

@@ -44,8 +44,6 @@
 #### `unstyled-lfp`
 
 - Fill in README
-- Import `@lfp/headless-lfp` as the logical guts of the component
-- Split out Language as own component file to avoid one unwieldy index file
 - Create template/method/props to style (css?) the component parts by their `lfpClassNames`
 - Add unit tests
 - Implement props allowing replacement of generic components (`div`, `p`, `table`, etc.) with custom components
@@ -56,9 +54,12 @@
 
 ##### Language sub-component
 
+- Split out as own component file to avoid unwieldy index file
 - Add LanguageActions with a submit button as the default
 
 ##### Fonts sub-components
+
+- Replace `FontProps` with imported `FontLFP`
 
 ##### Footer sub-component
 

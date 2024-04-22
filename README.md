@@ -145,3 +145,7 @@ See https://nx.dev/features/manage-releases for how to use `nx release` to:
 - Update version number across all projects;
 - Auto-update the CHANGELOG;
 - Release the new version of all projects.
+
+## Development workflow
+
+For now, development next-steps and goals can be added to and updated in the [Development To-Do List](DEV_TO_DO.md). After the first release, move dev steps to [issues](https://github.com/sillsdev/lang-font-picker/issues) which can be closed with targeted [pull requests](https://github.com/sillsdev/lang-font-picker/pulls). For broader goals, consider coordinating work with a [GitHub project](https://github.com/sillsdev/lang-font-picker/projects).

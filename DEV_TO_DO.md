@@ -77,3 +77,4 @@
 - pnpm workspace: https://pnpm.io/workspaces
 - Monorepo example: https://github.com/BiblioNexus-Foundation/scripture-editors
 - Language Font Finder API: https://github.com/silnrsi/langfontfinder?tab=readme-ov-file#language-font-finder-service
+- Example of Node.js/Electron app using .NET: https://github.com/paranext/paranext-core

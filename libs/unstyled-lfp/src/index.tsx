@@ -9,6 +9,7 @@ export interface UnstyledLanguageFontPickerProps {
   fontRows?: FontProps[];
   fontTableHeadActions?: ReactElement;
   fontTableHeadText?: ReactElement;
+  footer?: ReactElement;
   headerActions?: ReactElement;
   headerText?: ReactElement | string;
   language?: string;
@@ -35,6 +36,7 @@ export function UnstyledLanguageFontPicker(
     fontRows,
     fontTableHeadActions,
     fontTableHeadText,
+    footer,
     headerActions,
     headerText,
     language,
@@ -113,6 +115,9 @@ export function UnstyledLanguageFontPicker(
         </thead>
         <tbody className={lfpClassNames.FontTableBody}>{tableRows}</tbody>
       </table>
+
+      {/* Footer */}
+      <div className={lfpClassNames.Footer}>{footer}</div>
     </div>
   );
 }

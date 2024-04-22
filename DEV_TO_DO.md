@@ -45,7 +45,7 @@
 
 - Fill in README
 - Import `@lfp/headless-lfp` as the logical guts of the component
-- Split out Header, Language, Fonts(, Footer) as own components/files to avoid one unwieldy file
+- Split out Language, Fonts as own components/files to avoid one unwieldy file
 - Create template/method/props to style (css?) the component parts by their `lfpClassNames`
 - Add unit tests
 - Implement props allowing replacement of generic components (`div`, `p`, `table`, etc.) with custom components
@@ -63,8 +63,6 @@
 ##### Fonts sub-components
 
 ##### Footer sub-component
-
-- Create the footer component
 
 ## .NET
 

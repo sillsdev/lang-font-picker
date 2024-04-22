@@ -3,6 +3,8 @@ import { ReactElement } from "react";
 import { lfpClassNames } from "./types";
 
 export interface UnstyledLanguageFontPickerProps {
+  cancel?: () => void;
+  confirm?: () => void;
   fontDivider?: ReactElement | boolean;
   fontRowActions?: (rowProps: FontRowProps) => ReactElement;
   fontRowText?: (rowProps: FontRowProps) => ReactElement | string;
@@ -30,6 +32,8 @@ export function UnstyledLanguageFontPicker(
   props: UnstyledLanguageFontPickerProps
 ): ReactElement {
   const {
+    cancel,
+    confirm,
     fontDivider,
     fontRowActions,
     fontRowText,
@@ -84,7 +88,16 @@ export function UnstyledLanguageFontPicker(
         ) : (
           <div className={lfpClassNames.HeaderText}>{headerText}</div>
         )}
-        <div className={lfpClassNames.HeaderActions}>{headerActions}</div>
+        <div className={lfpClassNames.HeaderActions}>
+          {headerActions ? (
+            headerActions
+          ) : (
+            <div>
+              {confirm ? <button onClick={confirm}>✓</button> : null}
+              {cancel ? <button onClick={cancel}>✕</button> : null}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Language */}

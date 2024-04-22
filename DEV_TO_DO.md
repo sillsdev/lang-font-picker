@@ -54,8 +54,6 @@
 
 ##### Header sub-component
 
-- Add generic, optional accept & cancel buttons to the HeaderActions
-
 ##### Language sub-component
 
 - Add LanguageActions with a submit button as the default

@@ -1,26 +1,21 @@
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
+
+import useLanguageFontPicker, { type LFPOptions } from "@lfp/headless-lfp";
 
 import { lfpClassNames } from "./types";
+import UnstyledFontList, {
+  type UnstyledFontListProps,
+} from "./UnstyledFontList";
 
-export interface UnstyledLanguageFontPickerProps {
-  fontDivider?: ReactElement | boolean;
-  fontRowActions?: (rowProps: FontRowProps) => ReactElement;
-  fontRowText?: (rowProps: FontRowProps) => ReactElement | string;
-  fontRows?: FontProps[];
-  fontTableHeadActions?: ReactElement;
-  fontTableHeadText?: ReactElement;
+export interface UnstyledLanguageFontPickerProps extends UnstyledFontListProps {
+  cancel?: () => void;
+  confirm?: () => void;
+  footer?: ReactElement;
   headerActions?: ReactElement;
   headerText?: ReactElement | string;
   language?: string;
   languageInfo?: ReactElement | string;
-}
-
-interface FontProps {
-  name: ReactElement;
-}
-
-interface FontRowProps extends Partial<FontProps> {
-  index?: number;
+  options?: LFPOptions;
 }
 
 const defaultHeaderText = "Language Font Picker";
@@ -29,47 +24,32 @@ export function UnstyledLanguageFontPicker(
   props: UnstyledLanguageFontPickerProps
 ): ReactElement {
   const {
+    cancel,
+    confirm,
     fontDivider,
     fontRowActions,
     fontRowText,
     fontRows,
     fontTableHeadActions,
     fontTableHeadText,
+    footer,
     headerActions,
     headerText,
     language,
     languageInfo,
+    options,
   } = props;
 
-  const tableRows: ReactElement[] = [];
-  fontRows?.forEach((font, index) => {
-    /* Optional divider between fonts */
-    if (index && fontDivider) {
-      tableRows.push(
-        <tr className={lfpClassNames.FontDivider} key={`divider-${index}`}>
-          <td>{fontDivider === true ? <hr /> : fontDivider}</td>
-        </tr>
-      );
-    }
+  const { fetchFonts, fonts } = useLanguageFontPicker(options);
 
-    /* Row with font info */
-    const rowProps: FontRowProps = { ...font, index };
-    const rowText = fontRowText ? fontRowText(rowProps) : font.name;
-    tableRows.push(
-      <tr className={lfpClassNames.FontRow} key={`row-${index}`}>
-        <td>
-          {typeof rowText === "string" ? (
-            <p className={lfpClassNames.FontRowText}>{rowText}</p>
-          ) : (
-            <div className={lfpClassNames.FontRowText}>{rowText}</div>
-          )}
-          <div className={lfpClassNames.FontRowActions}>
-            {fontRowActions ? fontRowActions(rowProps) : null}
-          </div>
-        </td>
-      </tr>
-    );
-  });
+  const fontListProps: UnstyledFontListProps = {
+    fontDivider,
+    fontRowActions,
+    fontRowText,
+    fontRows: [...fonts, ...(fontRows ?? [])],
+    fontTableHeadActions,
+    fontTableHeadText,
+  };
 
   return (
     <div className={lfpClassNames.Main}>
@@ -82,12 +62,25 @@ export function UnstyledLanguageFontPicker(
         ) : (
           <div className={lfpClassNames.HeaderText}>{headerText}</div>
         )}
-        <div className={lfpClassNames.HeaderActions}>{headerActions}</div>
+        <div className={lfpClassNames.HeaderActions}>
+          {headerActions ? (
+            headerActions
+          ) : (
+            <div>
+              {confirm ? <button onClick={confirm}>✓</button> : null}
+              {cancel ? <button onClick={cancel}>✕</button> : null}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Language */}
       <div className={lfpClassNames.Language}>
-        <input className={lfpClassNames.LanguageInput} type="text">
+        <input
+          className={lfpClassNames.LanguageInput}
+          onSubmit={(e) => fetchFonts(e.currentTarget.value)}
+          type="text"
+        >
           {language}
         </input>
         {typeof languageInfo === "string" ? (
@@ -98,21 +91,10 @@ export function UnstyledLanguageFontPicker(
       </div>
 
       {/* Fonts */}
-      <table className={lfpClassNames.FontTable}>
-        <thead className={lfpClassNames.FontTableHead}>
-          <tr>
-            <th>
-              <div className={lfpClassNames.FontTableHeadText}>
-                {fontTableHeadText}
-              </div>
-              <div className={lfpClassNames.FontTableHeadActions}>
-                {fontTableHeadActions}
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody className={lfpClassNames.FontTableBody}>{tableRows}</tbody>
-      </table>
+      <UnstyledFontList {...fontListProps} />
+
+      {/* Footer */}
+      <div className={lfpClassNames.Footer}>{footer}</div>
     </div>
   );
 }

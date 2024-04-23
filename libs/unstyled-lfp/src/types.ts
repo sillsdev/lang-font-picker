@@ -16,4 +16,5 @@ export enum lfpClassNames {
   FontRow = "lfp-font-row",
   FontRowText = "lfp-font-row__text",
   FontRowActions = "lfp-font-row__actions",
+  Footer = "lfp-footer",
 }

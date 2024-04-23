@@ -44,8 +44,6 @@
 #### `unstyled-lfp`
 
 - Fill in README
-- Import `@lfp/headless-lfp` as the logical guts of the component
-- Split out Header, Language, Fonts(, Footer) as own components/files to avoid one unwieldy file
 - Create template/method/props to style (css?) the component parts by their `lfpClassNames`
 - Add unit tests
 - Implement props allowing replacement of generic components (`div`, `p`, `table`, etc.) with custom components
@@ -54,17 +52,16 @@
 
 ##### Header sub-component
 
-- Add generic, optional accept & cancel buttons to the HeaderActions
-
 ##### Language sub-component
 
+- Split out as own component file to avoid unwieldy index file
 - Add LanguageActions with a submit button as the default
 
 ##### Fonts sub-components
 
-##### Footer sub-component
+- Replace `FontProps` with imported `FontLFP`
 
-- Create the footer component
+##### Footer sub-component
 
 ## .NET
 

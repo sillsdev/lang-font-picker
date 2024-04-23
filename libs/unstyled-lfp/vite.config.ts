@@ -33,7 +33,7 @@ export default defineConfig({
     },
     lib: {
       // Could also be a dictionary or array of multiple entry points.
-      entry: "src/index.tsx",
+      entry: "src/index.ts",
       name: "unstyled-lfp",
       fileName: "index",
       // Change this to the formats you want to support.

@@ -45,7 +45,7 @@
 
 - Fill in README
 - Create template/method/props to style (css?) the component parts by their `lfpClassNames`
-- Add unit tests
+- Add unit tests (with Storybook?)
 - Implement props allowing replacement of generic components (`div`, `p`, `table`, etc.) with custom components
   - This allows an alternative to styling with css
   - `material-lfp` can then simply sub in mui components without having to maintain parallel changes
@@ -58,8 +58,6 @@
 - Add LanguageActions with a submit button as the default
 
 ##### Fonts sub-components
-
-- Replace `FontProps` with imported `FontLFP`
 
 ##### Footer sub-component
 

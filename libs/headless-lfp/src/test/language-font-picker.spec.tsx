@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 //import { vi } from 'vitest'
 
-import useLanguageFontPicker from "../index";
+import useLanguageFontPicker from "../language-font-picker";
 
 describe("useLanguageFontPicker", () => {
   it("should render successfully", async () => {

@@ -1,21 +1,19 @@
 import { type ReactElement } from "react";
 
+import { FontLFP } from "@lfp/headless-lfp";
+
 import { lfpClassNames } from "./types";
 
 export interface UnstyledFontListProps {
   fontDivider?: ReactElement | boolean;
   fontRowActions?: (rowProps: FontRowProps) => ReactElement;
   fontRowText?: (rowProps: FontRowProps) => ReactElement | string;
-  fontRows?: FontProps[];
+  fontRows?: FontLFP[];
   fontTableHeadActions?: ReactElement;
   fontTableHeadText?: ReactElement;
 }
 
-interface FontProps {
-  name: string;
-}
-
-interface FontRowProps extends Partial<FontProps> {
+interface FontRowProps extends Partial<FontLFP> {
   index?: number;
 }
 

@@ -5,6 +5,8 @@
 - Get `nx format:check` and `nx format:write` to work like `prettier -c .` and `prettier -w .`
   - Remove the custom scripts in `package.json`
 - Set up test-coverage
+- Add storybook usage to README
+- Integrate storybook in GHA ci
 - Implement CI with NxCloud
   - [Set up remote caching](https://nx.dev/features/share-your-cache)
   - [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)
@@ -45,7 +47,7 @@
 
 - Fill in README
 - Create template/method/props to style (css?) the component parts by their `lfpClassNames`
-- Add unit tests (with Storybook?)
+- Expand tests and stories
 - Implement props allowing replacement of generic components (`div`, `p`, `table`, etc.) with custom components
   - This allows an alternative to styling with css
   - `material-lfp` can then simply sub in mui components without having to maintain parallel changes

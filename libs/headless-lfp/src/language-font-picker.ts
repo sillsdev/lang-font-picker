@@ -25,9 +25,9 @@ export function useLanguageFontPicker(
   /** Fetch fonts for the given language tag. */
   const fetchFonts = useCallback(
     async (language: string) => {
-      await lff.findFonts(language);
+      const lffFonts = await lff.findFonts(language);
       setFonts(
-        lff.fonts.slice(0, onlyOneFont ? 1 : undefined).map(convertToFontLFP)
+        lffFonts.slice(0, onlyOneFont ? 1 : undefined).map(convertToFontLFP)
       );
     },
     [lff, onlyOneFont]

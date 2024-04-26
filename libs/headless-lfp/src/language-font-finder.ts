@@ -5,7 +5,7 @@ import { fetchJSON } from "./utils";
 
 export interface UseLanguageFontFinder {
   error?: string;
-  findFonts: (lang: string) => Promise<void>;
+  findFonts: (lang: string) => Promise<FontLFF[]>;
   finding: boolean;
   fonts: FontLFF[];
   language: string;
@@ -34,7 +34,7 @@ export function useLanguageFontFinder(
   const [language, setLanguage] = useState("");
 
   const findFonts = useCallback(
-    async (lang: string) => {
+    async (lang: string): Promise<FontLFF[]> => {
       setFinding(true);
 
       lang = sanitizeLang(lang);
@@ -57,26 +57,23 @@ export function useLanguageFontFinder(
         const url = `${LFFApiUrl}${lang}`;
         await fetchJSON(url)
           .then((obj) => newFonts.push(obj as FontLFF))
-          .catch((err) => {
-            newError = `${err}`;
-          });
+          .catch((err) => (newError = `${err}`));
       }
 
       if (options.customFindFontsFunction) {
         await options
           .customFindFontsFunction(lang)
           .then((fonts) => newFonts.push(...fonts))
-          .catch((err) => {
-            newError += `${newError ? "\n" : ""}${err}`;
-          });
+          .catch((err) => (newError += `${newError ? "\n" : ""}${err}`));
       }
-
       setError(newError);
       setFonts(newFonts);
       setFinding(false);
+      return newFonts;
     },
     [language, options]
   );
+
   return { error, findFonts, finding, fonts, language };
 }
 

@@ -8,8 +8,10 @@ describe("App", () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it("should have a greeting as the title", () => {
-    const { getByText } = render(<App />);
-    expect(getByText(/Welcome Language Font Picker/gi)).toBeTruthy();
+  it("should have the title", () => {
+    const { getAllByText } = render(<App />);
+    expect(getAllByText(/Language Font Picker/i).length).toBeGreaterThanOrEqual(
+      1
+    );
   });
 });

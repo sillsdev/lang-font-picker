@@ -23,7 +23,7 @@
 
 #### `lang-font-picker`
 
-- Replace the stand-in app with a demo of `unstyled-lfp`
+- Add a few interactive options to the demo
 - Add README
 
 ### Libs

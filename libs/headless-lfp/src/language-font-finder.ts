@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import { FontLFF } from "./types";
 import { fetchJSON } from "./utils";
 
+/** The output type of the useLanguageFontFinder hook. */
 export interface UseLanguageFontFinder {
   error?: string;
   findFonts: (lang: string) => Promise<FontLFF[]>;
@@ -11,6 +12,7 @@ export interface UseLanguageFontFinder {
   language: string;
 }
 
+/** The input type of the useLanguageFontFinder hook. */
 export interface LFFOptions {
   disableLanguageFontFinder?: boolean;
   customFindFontsFunction?: (lang: string) => Promise<FontLFF[]>;

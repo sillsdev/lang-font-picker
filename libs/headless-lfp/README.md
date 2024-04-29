@@ -1,7 +1,59 @@
-# headless-lfp
+# Headless Language Font Picker (headless-lfp)
 
-This library was generated with [Nx](https://nx.dev).
+This headless React component handles the internal state and logic for a font picker.
+It is a UI-agnostic hook that can be called within another component that handles the UI.
+The basic, fully-functional, out-of-the-box font picker will be the Unstyled Language Font Picker (unstyled-lfp).
+However, this hook can be used with your own custom UI.
 
-## Running unit tests
+## `useLanguageFontPicker`
 
-Run `nx test headless-lfp` to execute the unit tests via [Vitest](https://vitest.dev/).
+```js
+const { fetchFonts, fonts } = useLanguageFontPicker(options);
+```
+
+### `fetchFonts: (language: string) => Promise<void>`
+
+Call this async function to have the Language Font Picker fetch fonts for the specified `language` from an external API (default: https://github.com/silnrsi/langfontfinder?tab=readme-ov-file#language-font-finder-service).
+
+### `fonts: FontLFP[]`
+
+The `fonts` state variable holds an array of font options, both those given in `options` (below) and those fetched by `fetchFonts`.
+
+The `FontLFP` type is
+
+```ts
+interface FontLFP {
+  name: string;
+}
+```
+
+### `options: LFPOptions`
+
+The `LFPOptions` type is
+
+```ts
+interface LFPOptions {
+  customFindFontsFunction?: (lang: string) => Promise<FontLFF[]>;
+  disableLanguageFontFinder?: boolean;
+  extraFonts?: FontLFP[];
+  maxFontCount?: number;
+}
+```
+
+- `customFindFontsFunction` (optional function)
+
+  - allows the user to specify an alternate external font source
+  - must return fonts in type `FontLFF` (the format returned by the default external API)
+
+- `disableLanguageFontFinder` (optional boolean)
+
+  - disables the default font finder API call
+  - does not disable use of `customFindFontsFunction`
+
+- `extraFonts` (optional array)
+
+  - fonts to include regardless of the language or of the results of the font-finding functions
+  - by default, appear at the end of the internal `fonts` array
+
+- `maxFontCount` (optional positive integer)
+  - only show the first `maxFontCount` fonts in the internal `fonts` array

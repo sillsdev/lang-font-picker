@@ -16,7 +16,7 @@
 
 ## Node/React
 
-- Make sure all functions are preceded with a `/** Comment */`
+- Make sure all functions (and externally visible types/consts) are preceded with a `/** Comment */`
 - Plan a first release
   - https://docs.npmjs.com/creating-and-publishing-scoped-public-packages
 - Add localization
@@ -27,7 +27,7 @@
 #### `lang-font-picker`
 
 - Add a few interactive options to the demo
-- Add README
+- Add `useLanguageFontFinder` to the README
 
 ### Libs
 

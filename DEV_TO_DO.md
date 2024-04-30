@@ -7,6 +7,7 @@
 - Set up test-coverage
 - Add storybook usage to README
 - Integrate storybook in GHA ci
+- Try to get pnpm v9 working in GitHub Actions workflows
 - Implement CI with NxCloud
   - [Set up remote caching](https://nx.dev/features/share-your-cache)
   - [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)

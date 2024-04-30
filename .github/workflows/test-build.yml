@@ -1,4 +1,4 @@
-name: format-lint
+name: test-build
 
 on:
   push:
@@ -10,14 +10,14 @@ permissions:
   contents: read
 
 jobs:
-  format-lint:
-    name: Checks formatting and linting on ${{ matrix.os }}, node ${{ matrix.node_version }}, pnpm ${{ matrix.pnpm_version }}
+  test-build:
+    name: Runs tests and builds on ${{ matrix.os }}, node ${{ matrix.node_version }}, pnpm ${{ matrix.pnpm_version }}
 
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
         node_version: [20]
         pnpm_version: [8]
 
@@ -39,8 +39,8 @@ jobs:
       - name: Install dependencies
         run: pnpm i
 
-      - name: Check formatting
-        run: pnpm format:check
+      - name: Run all project tests
+        run: pnpm test -- --verbose
 
-      - name: Lint all projects
-        run: pnpm lint --verbose
+      - name: Build all projects
+        run: pnpm build -- --verbose

@@ -6,7 +6,7 @@ import { fetchJSON } from "./utils";
 /** The output type of the useLanguageFontFinder hook. */
 export interface UseLanguageFontFinder {
   error?: string;
-  findFonts: (lang: string) => Promise<FontLFF[]>;
+  findFonts: (language: string) => Promise<FontLFF[]>;
   finding: boolean;
   fonts: FontLFF[];
   language: string;
@@ -15,12 +15,12 @@ export interface UseLanguageFontFinder {
 /** The input type of the useLanguageFontFinder hook. */
 export interface LFFOptions {
   disableLanguageFontFinder?: boolean;
-  customFindFontsFunction?: (lang: string) => Promise<FontLFF[]>;
+  customFindFontsFunction?: (language: string) => Promise<FontLFF[]>;
 }
 
 /** Remove all characters except dash, letters, and numbers. */
-export function sanitizeLang(lang: string): string {
-  return lang.replace(/[^a-zA-Z0-9-]/, "");
+export function sanitizeLang(language: string): string {
+  return language.replace(/[^a-zA-Z0-9-]/, "");
 }
 
 const ErrorEmptyLanguages = "Cannot use empty language.";

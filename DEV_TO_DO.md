@@ -5,6 +5,7 @@
 - Get `nx format:check` and `nx format:write` to work like `prettier -c .` and `prettier -w .`
   - Remove the custom scripts in `package.json`
 - Set up test-coverage
+- Try to get pnpm v9 working in GitHub Actions workflows
 - Implement CI with NxCloud
   - [Set up remote caching](https://nx.dev/features/share-your-cache)
   - [Set up task distribution across multiple machines](https://nx.dev/nx-cloud/features/distribute-task-execution)

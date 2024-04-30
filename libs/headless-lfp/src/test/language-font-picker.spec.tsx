@@ -27,8 +27,8 @@ const mockFont: FontLFF = {
   defaultfamily: [mockFontId],
   families: { [mockFontId]: mockFontFamily },
 };
-const mockFindFonts = (lang: string) => {
-  mockLFF.language = lang;
+const mockFindFonts = (language: string) => {
+  mockLFF.language = language;
   mockLFF.fonts = [mockFont];
   return [mockFont];
 };

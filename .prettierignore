@@ -25,10 +25,11 @@ logs
 *-debug.log*
 *-error.log*
 
-# Test coverage
+# Tests and test coverage
 .lcov
 coverage
 lib-cov
+storybook-static
 
 # IDEs
 .idea

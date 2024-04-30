@@ -5,7 +5,7 @@ import { fetchJSON } from "./utils";
 
 export interface UseLanguageFontFinder {
   error?: string;
-  findFonts: (lang: string) => Promise<void>;
+  findFonts: (language: string) => Promise<FontLFF[]>;
   finding: boolean;
   fonts: FontLFF[];
   language: string;
@@ -13,12 +13,12 @@ export interface UseLanguageFontFinder {
 
 export interface LFFOptions {
   disableLanguageFontFinder?: boolean;
-  customFindFontsFunction?: (lang: string) => Promise<FontLFF[]>;
+  customFindFontsFunction?: (language: string) => Promise<FontLFF[]>;
 }
 
 /** Remove all characters except dash, letters, and numbers. */
-export function sanitizeLang(lang: string): string {
-  return lang.replace(/[^a-zA-Z0-9-]/, "");
+export function sanitizeLang(language: string): string {
+  return language.replace(/[^a-zA-Z0-9-]/, "");
 }
 
 const ErrorEmptyLanguages = "Cannot use empty language.";
@@ -34,7 +34,7 @@ export function useLanguageFontFinder(
   const [language, setLanguage] = useState("");
 
   const findFonts = useCallback(
-    async (lang: string) => {
+    async (lang: string): Promise<FontLFF[]> => {
       setFinding(true);
 
       lang = sanitizeLang(lang);
@@ -57,26 +57,23 @@ export function useLanguageFontFinder(
         const url = `${LFFApiUrl}${lang}`;
         await fetchJSON(url)
           .then((obj) => newFonts.push(obj as FontLFF))
-          .catch((err) => {
-            newError = `${err}`;
-          });
+          .catch((err) => (newError = `${err}`));
       }
 
       if (options.customFindFontsFunction) {
         await options
           .customFindFontsFunction(lang)
           .then((fonts) => newFonts.push(...fonts))
-          .catch((err) => {
-            newError += `${newError ? "\n" : ""}${err}`;
-          });
+          .catch((err) => (newError += `${newError ? "\n" : ""}${err}`));
       }
-
       setError(newError);
       setFonts(newFonts);
       setFinding(false);
+      return newFonts;
     },
     [language, options]
   );
+
   return { error, findFonts, finding, fonts, language };
 }
 

@@ -22,4 +22,17 @@ describe("useLanguageFontFinder", () => {
 
     expect(result.current.error).toBeTruthy();
   });
+
+  it("should fetch a font for a language", async () => {
+    const { result } = renderHook(() => useLanguageFontFinder());
+
+    expect(result.current.fonts).toHaveLength(0);
+
+    await act(async () => {
+      await result.current.findFonts("ar");
+    });
+
+    expect(result.current.error).toBeFalsy();
+    expect(result.current.fonts).toHaveLength(1);
+  });
 });

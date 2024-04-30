@@ -10,27 +10,27 @@ export interface UseLanguageFontPicker {
 }
 
 export interface LFPOptions extends LFFOptions {
+  extraFonts?: FontLFP[];
   onlyOneFont?: boolean;
 }
 
 export function useLanguageFontPicker(
   options: LFPOptions = {}
 ): UseLanguageFontPicker {
-  const { onlyOneFont, ...lffOptions } = options;
+  const { extraFonts, onlyOneFont, ...lffOptions } = options;
 
-  const [fonts, setFonts] = useState<FontLFP[]>([]);
+  const [fonts, setFonts] = useState<FontLFP[]>(extraFonts ?? []);
 
   const lff = useLanguageFontFinder(lffOptions);
 
   /** Fetch fonts for the given language tag. */
   const fetchFonts = useCallback(
     async (language: string) => {
-      await lff.findFonts(language);
-      setFonts(
-        lff.fonts.slice(0, onlyOneFont ? 1 : undefined).map(convertToFontLFP)
-      );
+      const foundFonts = (await lff.findFonts(language)).map(convertToFontLFP);
+      const allFonts = [...foundFonts, ...(extraFonts ?? [])];
+      setFonts(allFonts.slice(0, onlyOneFont ? 1 : undefined));
     },
-    [lff, onlyOneFont]
+    [extraFonts, lff, onlyOneFont]
   );
 
   return { fetchFonts, fonts };

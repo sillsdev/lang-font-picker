@@ -78,7 +78,14 @@ export function UnstyledLanguageFontPicker(
       <div className={lfpClassNames.Language}>
         <input
           className={lfpClassNames.LanguageInput}
-          onSubmit={(e) => fetchFonts(e.currentTarget.value)}
+          onSubmit={(e) => {
+            fetchFonts(e.currentTarget.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              fetchFonts(e.currentTarget.value);
+            }
+          }}
           type="text"
         >
           {language}

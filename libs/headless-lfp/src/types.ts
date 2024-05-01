@@ -1,6 +1,7 @@
 /** Font metadata as used inside the Language Font Picker (LFP). */
 export interface FontLFP {
   name: string;
+  selected?: boolean;
 }
 
 /** Font metadata as received from the Language Font Finder (LFF).

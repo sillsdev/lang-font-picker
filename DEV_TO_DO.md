@@ -38,7 +38,6 @@
 #### `headless-lfp`
 
 - Fill in README
-- Add state for selected font
 - Implement font fetching
   - https://github.com/silnrsi/fonts/blob/main/documentation/webfonts.md
 - Investigate font caching

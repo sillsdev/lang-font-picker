@@ -8,6 +8,7 @@ import { convertToFontLFP } from "./utils";
 export interface UseLanguageFontPicker {
   fetchFonts: (language: string) => Promise<void>;
   fonts: FontLFP[];
+  toggleSelectFont: (font: string) => boolean | undefined;
 }
 
 /** The input type of the useLanguageFontPicker hook.
@@ -15,6 +16,7 @@ export interface UseLanguageFontPicker {
 export interface LFPOptions extends LFFOptions {
   extraFonts?: FontLFP[];
   maxFontCount?: number;
+  multiselect?: boolean;
 }
 
 /** This React hook is a headless Font Picker component. Handles the internal state and logic for a
@@ -22,7 +24,7 @@ export interface LFPOptions extends LFFOptions {
 export function useLanguageFontPicker(
   options: LFPOptions = {}
 ): UseLanguageFontPicker {
-  const { extraFonts, maxFontCount, ...lffOptions } = options;
+  const { extraFonts, maxFontCount, multiselect, ...lffOptions } = options;
 
   const [fonts, setFonts] = useState<FontLFP[]>(extraFonts ?? []);
 
@@ -38,7 +40,29 @@ export function useLanguageFontPicker(
     [extraFonts, lff, maxFontCount]
   );
 
-  return { fetchFonts, fonts };
+  /** Toggle whether the specified font is selected.
+   * If `options.multiselect` is `true`, leave all other fonts alone.
+   * If `options.multiselect` is `false`, set `selected: false` on all other fonts.
+   * If specified font is in the fonts list, return the resulting `selected` value of that font.
+   * If specified font is not in the fonts list, return `undefined`.  */
+  const toggleSelectFont = useCallback(
+    (fontName: string) => {
+      let selected: boolean | undefined;
+      setFonts((prev) =>
+        prev.map((font) => {
+          if (font.name === fontName) {
+            selected = !font.selected;
+            return { ...font, selected };
+          }
+          return multiselect ? font : { ...font, selected: false };
+        })
+      );
+      return selected;
+    },
+    [multiselect]
+  );
+
+  return { fetchFonts, fonts, toggleSelectFont };
 }
 
 export default useLanguageFontPicker;

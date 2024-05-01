@@ -4,10 +4,11 @@ import useLanguageFontPicker, { type LFPOptions } from "@lfp/headless-lfp";
 
 import { lfpClassNames } from "./types";
 import UnstyledFontList, {
+  type ExternalFontListProps,
   type UnstyledFontListProps,
 } from "./UnstyledFontList";
 
-export interface UnstyledLanguageFontPickerProps extends UnstyledFontListProps {
+export interface UnstyledLanguageFontPickerProps extends ExternalFontListProps {
   cancel?: () => void;
   confirm?: () => void;
   footer?: ReactElement;
@@ -29,7 +30,6 @@ export function UnstyledLanguageFontPicker(
     fontDivider,
     fontRowActions,
     fontRowText,
-    fontRows,
     fontTableHeadActions,
     fontTableHeadText,
     footer,
@@ -40,15 +40,17 @@ export function UnstyledLanguageFontPicker(
     options,
   } = props;
 
-  const { fetchFonts, fonts } = useLanguageFontPicker(options);
+  const { fetchFonts, fonts, toggleSelectFont } =
+    useLanguageFontPicker(options);
 
   const fontListProps: UnstyledFontListProps = {
     fontDivider,
     fontRowActions,
     fontRowText,
-    fontRows: [...fonts, ...(fontRows ?? [])],
     fontTableHeadActions,
     fontTableHeadText,
+    fonts,
+    toggleSelectFont,
   };
 
   return (

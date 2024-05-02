@@ -40,7 +40,7 @@ export function UnstyledLanguageFontPicker(
     options,
   } = props;
 
-  const { fetchFonts, fonts, toggleSelectFont } =
+  const { fetchFonts, fonts, toggleFontIsSelected } =
     useLanguageFontPicker(options);
 
   const fontListProps: UnstyledFontListProps = {
@@ -50,7 +50,7 @@ export function UnstyledLanguageFontPicker(
     fontTableHeadActions,
     fontTableHeadText,
     fonts,
-    toggleSelectFont,
+    toggleFontIsSelected,
   };
 
   return (

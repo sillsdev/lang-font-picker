@@ -16,7 +16,7 @@ export interface ExternalFontListProps {
 /** All FontList props, including those that only the picker component should see. */
 export interface UnstyledFontListProps extends ExternalFontListProps {
   fonts: FontLFP[];
-  toggleSelectFont: (font: string) => void;
+  toggleFontIsSelected: (font: string) => void;
 }
 
 interface FontRowProps extends Partial<FontLFP> {
@@ -31,7 +31,7 @@ export function UnstyledFontList(props: UnstyledFontListProps): ReactElement {
     fontTableHeadActions,
     fontTableHeadText,
     fonts,
-    toggleSelectFont,
+    toggleFontIsSelected,
   } = props;
 
   const tableRows: ReactElement[] = [];
@@ -46,14 +46,14 @@ export function UnstyledFontList(props: UnstyledFontListProps): ReactElement {
     }
 
     /* Row with font info */
-    const rowClassName: string = font.selected
+    const rowClassName: string = font.isSelected
       ? `${lfpClassNames.FontRow} ${lfpClassNames.FontRowSelected}`
       : lfpClassNames.FontRow;
     const rowProps: FontRowProps = { ...font, index };
     const rowText = fontRowText ? fontRowText(rowProps) : font.name;
     tableRows.push(
       <tr className={rowClassName} key={`row-${index}`}>
-        <td onClick={() => toggleSelectFont(font.name)}>
+        <td onClick={() => toggleFontIsSelected(font.name)}>
           {typeof rowText === "string" ? (
             <p className={lfpClassNames.FontRowText}>{rowText}</p>
           ) : (

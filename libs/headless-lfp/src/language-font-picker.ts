@@ -6,17 +6,24 @@ import { convertToFontLFP } from "./utils";
 
 /** The output type of the useLanguageFontPicker hook. */
 export interface UseLanguageFontPicker {
+  /** Fetch fonts for the given language tag. */
   fetchFonts: (language: string) => Promise<void>;
+  /** Array of font options. */
   fonts: FontLFP[];
-  toggleSelectFont: (font: string) => boolean | undefined;
+  /** Toggle whether the specified font is selected.
+   * If `options.allowMultiselect` is `true`, leave all other fonts alone.
+   * If `options.allowMultiselect` is `false`, set `isSelected: false` on all other fonts.
+   * If specified font is in the fonts list, return the resulting `isSelected` value of that font.
+   * If specified font is not in the fonts list, return `undefined`.  */
+  toggleFontIsSelected: (font: string) => boolean | undefined;
 }
 
 /** The input type of the useLanguageFontPicker hook.
  * `maxFontCount` should be a positive integer. */
 export interface LFPOptions extends LFFOptions {
+  allowMultiselect?: boolean;
   extraFonts?: FontLFP[];
   maxFontCount?: number;
-  multiselect?: boolean;
 }
 
 /** This React hook is a headless Font Picker component. Handles the internal state and logic for a
@@ -24,13 +31,12 @@ export interface LFPOptions extends LFFOptions {
 export function useLanguageFontPicker(
   options: LFPOptions = {}
 ): UseLanguageFontPicker {
-  const { extraFonts, maxFontCount, multiselect, ...lffOptions } = options;
+  const { allowMultiselect, extraFonts, maxFontCount, ...lffOptions } = options;
 
   const [fonts, setFonts] = useState<FontLFP[]>(extraFonts ?? []);
 
   const lff = useLanguageFontFinder(lffOptions);
 
-  /** Fetch fonts for the given language tag. */
   const fetchFonts = useCallback(
     async (language: string) => {
       const foundFonts = (await lff.findFonts(language)).map(convertToFontLFP);
@@ -40,29 +46,25 @@ export function useLanguageFontPicker(
     [extraFonts, lff, maxFontCount]
   );
 
-  /** Toggle whether the specified font is selected.
-   * If `options.multiselect` is `true`, leave all other fonts alone.
-   * If `options.multiselect` is `false`, set `selected: false` on all other fonts.
-   * If specified font is in the fonts list, return the resulting `selected` value of that font.
-   * If specified font is not in the fonts list, return `undefined`.  */
-  const toggleSelectFont = useCallback(
+  const toggleFontIsSelected = useCallback(
     (fontName: string) => {
-      let selected: boolean | undefined;
+      let isSelected: boolean | undefined;
       setFonts((prev) =>
         prev.map((font) => {
-          if (font.name === fontName) {
-            selected = !font.selected;
-            return { ...font, selected };
+          if (font.name !== fontName) {
+            return allowMultiselect ? font : { ...font, isSelected: false };
           }
-          return multiselect ? font : { ...font, selected: false };
+
+          isSelected = !font.isSelected;
+          return { ...font, isSelected };
         })
       );
-      return selected;
+      return isSelected;
     },
-    [multiselect]
+    [allowMultiselect]
   );
 
-  return { fetchFonts, fonts, toggleSelectFont };
+  return { fetchFonts, fonts, toggleFontIsSelected };
 }
 
 export default useLanguageFontPicker;

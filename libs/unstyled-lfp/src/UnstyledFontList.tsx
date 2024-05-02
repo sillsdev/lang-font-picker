@@ -4,13 +4,19 @@ import { FontLFP } from "@lfp/headless-lfp";
 
 import { lfpClassNames } from "./types";
 
-export interface UnstyledFontListProps {
+/** FontList props that should also be available to the user. */
+export interface ExternalFontListProps {
   fontDivider?: ReactElement | boolean;
   fontRowActions?: (rowProps: FontRowProps) => ReactElement;
   fontRowText?: (rowProps: FontRowProps) => ReactElement | string;
-  fontRows?: FontLFP[];
   fontTableHeadActions?: ReactElement;
   fontTableHeadText?: ReactElement;
+}
+
+/** All FontList props, including those that only the picker component should see. */
+export interface UnstyledFontListProps extends ExternalFontListProps {
+  fonts: FontLFP[];
+  toggleFontIsSelected: (font: string) => void;
 }
 
 interface FontRowProps extends Partial<FontLFP> {
@@ -22,13 +28,14 @@ export function UnstyledFontList(props: UnstyledFontListProps): ReactElement {
     fontDivider,
     fontRowActions,
     fontRowText,
-    fontRows,
     fontTableHeadActions,
     fontTableHeadText,
+    fonts,
+    toggleFontIsSelected,
   } = props;
 
   const tableRows: ReactElement[] = [];
-  fontRows?.forEach((font, index) => {
+  fonts.forEach((font, index) => {
     /* Optional divider between fonts */
     if (index && fontDivider) {
       tableRows.push(
@@ -39,11 +46,14 @@ export function UnstyledFontList(props: UnstyledFontListProps): ReactElement {
     }
 
     /* Row with font info */
+    const rowClassName: string = font.isSelected
+      ? `${lfpClassNames.FontRow} ${lfpClassNames.FontRowSelected}`
+      : lfpClassNames.FontRow;
     const rowProps: FontRowProps = { ...font, index };
     const rowText = fontRowText ? fontRowText(rowProps) : font.name;
     tableRows.push(
-      <tr className={lfpClassNames.FontRow} key={`row-${index}`}>
-        <td>
+      <tr className={rowClassName} key={`row-${index}`}>
+        <td onClick={() => toggleFontIsSelected(font.name)}>
           {typeof rowText === "string" ? (
             <p className={lfpClassNames.FontRowText}>{rowText}</p>
           ) : (

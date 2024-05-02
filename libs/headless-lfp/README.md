@@ -8,7 +8,7 @@ However, this hook can be used with your own custom UI.
 ## `useLanguageFontPicker`
 
 ```js
-const { fetchFonts, fonts } = useLanguageFontPicker(options);
+const { fetchFonts, fonts, toggleFontIsSelected } = useLanguageFontPicker(options);
 ```
 
 ### `fetchFonts: (language: string) => Promise<void>`
@@ -24,8 +24,16 @@ The `FontLFP` type is
 ```ts
 interface FontLFP {
   name: string;
+  isSelected?: boolean;
 }
 ```
+
+### `toggleFontIsSelected: (font: string) => boolean | undefined;`
+
+The `.isSelected` value of the given font in the `fonts` array will be negated and the resulting value returned.
+Returns `undefined` if `fonts` does not have a font with `.name` matching the given font string.
+Regardless of the result, if `options.allowMultiselect` is false,
+then all fonts not matching the given font string will have `.isSelected` set to `false`.
 
 ### `options: LFPOptions`
 
@@ -33,12 +41,18 @@ The `LFPOptions` type is
 
 ```ts
 interface LFPOptions {
+  allowMultiselect?: boolean;
   customFindFontsFunction?: (lang: string) => Promise<FontLFF[]>;
   disableLanguageFontFinder?: boolean;
   extraFonts?: FontLFP[];
   maxFontCount?: number;
 }
 ```
+
+- `allowMultiselect` (optional boolean)
+
+  - if false, only one font can be selected at a time
+  - set to true to allow selection of multiple fonts
 
 - `customFindFontsFunction` (optional function)
 
@@ -56,4 +70,5 @@ interface LFPOptions {
   - by default, appear at the end of the internal `fonts` array
 
 - `maxFontCount` (optional positive integer)
+
   - only show the first `maxFontCount` fonts in the internal `fonts` array

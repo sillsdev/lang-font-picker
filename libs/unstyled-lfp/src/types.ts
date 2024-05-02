@@ -14,6 +14,7 @@ export enum lfpClassNames {
   FontTableBody = "lfp-font-table-body",
   FontDivider = "lfp-font-divider",
   FontRow = "lfp-font-row",
+  FontRowSelected = "lfp-font-row-selected",
   FontRowText = "lfp-font-row__text",
   FontRowActions = "lfp-font-row__actions",
   Footer = "lfp-footer",

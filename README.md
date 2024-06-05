@@ -7,10 +7,12 @@
 Install [pnpm](https://pnpm.io/installation#using-npm) globally:
 
 ```
-npm i -g pnpm
+npm i -g pnpm@8
 pnpm i
 pnpm setup
 ```
+
+(Use pnpm v8, because Nx doesn't support v9.)
 
 After setting up `pnpm`, close and reopen VSCode before continuing to the next step.
 
@@ -19,8 +21,10 @@ After setting up `pnpm`, close and reopen VSCode before continuing to the next s
 Install [Nx](https://nx.dev/getting-started/installation#installing-nx-globally) globally:
 
 ```
-pnpm add -g nx
+pnpm add -g nx@18
 ```
+
+(Use Nx v18 because there are testing issues with v19.)
 
 (If you choose not to install Nx globally, you will have to prefix `pnpm` to all `nx [...]` commands in this README. For example, `nx test lang-font-picker` becomes `pnpm nx test lang-font-picker`.)
 

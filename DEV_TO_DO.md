@@ -5,7 +5,6 @@
 - Get `nx format:check` and `nx format:write` to work like `prettier -c .` and `prettier -w .`
   - Remove the custom scripts in `package.json`
 - Set up test-coverage
-- Add storybook usage to README
 - Integrate storybook in GHA ci
 - Try to get pnpm v9 working in GitHub Actions workflows
 - Implement CI with NxCloud

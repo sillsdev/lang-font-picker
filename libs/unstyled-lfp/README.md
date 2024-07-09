@@ -32,3 +32,14 @@ Functions that will be executed when the picker is closed via cancel/confirm but
 
 _To be continued..._
 
+## Storybook
+
+This component uses Storybook for developers to test/demo all of the components props.
+
+To interact with all the stories in the Storybook GUI:
+
+```bash
+nx storybook unstyled-lfp
+```
+
+To add or edit existing stories, modify `libs/unstyled-lfp/src/test/UnstyledLanguageFontPicker.stories.ts`.

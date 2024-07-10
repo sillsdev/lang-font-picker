@@ -47,3 +47,36 @@ export const FontDividerCustom: Story = {
     options: { extraFonts },
   },
 };
+
+export const LanguageInfoText: Story = {
+  args: {
+    languageInfo: "Select a font for the above language.",
+  },
+};
+
+export const LanguageInfoElement: Story = {
+  args: {
+    languageInfo: (
+      <p style={{ borderLeft: "5px dashed green" }}>
+        Select a font this language.
+      </p>
+    ),
+  },
+};
+
+export const LanguageInfoTextFunction: Story = {
+  args: {
+    languageInfo: (language: string) =>
+      `Select a font for language: ${language || "(no language tag typed)"}.`,
+  },
+};
+
+export const LanguageInfoElementFunction: Story = {
+  args: {
+    languageInfo: (language: string) => (
+      <p style={{ borderLeft: "5px dashed green" }}>
+        {`Pick a font for: ${language || "..."}.`}
+      </p>
+    ),
+  },
+};

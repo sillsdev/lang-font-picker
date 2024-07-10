@@ -1,4 +1,4 @@
-import { type ReactElement } from "react";
+import { type ReactElement, type ReactNode, useEffect, useState } from "react";
 
 import useLanguageFontPicker, { type LFPOptions } from "@lfp/headless-lfp";
 
@@ -8,14 +8,25 @@ import UnstyledFontList, {
   type UnstyledFontListProps,
 } from "./UnstyledFontList";
 
+/** The input props of the UnstyledLanguageFontPicker component. */
 export interface UnstyledLanguageFontPickerProps extends ExternalFontListProps {
+  /** (Optional) Function that runs when the picker (and any font selection) is canceled. */
   cancel?: () => void;
+  /** (Optional) Function that runs when font selection is confirmed. */
   confirm?: () => void;
+  /** (Optional) Custom footer, by default located at the bottom of the component. */
   footer?: ReactElement;
+  /** (Optional) Custom header child component to replace the default cancel and confirm buttons.
+   * Warning: If this prop is present, then the `cancel` and `confirm` props will not be used. */
   headerActions?: ReactElement;
-  headerText?: ReactElement | string;
+  /** (Optional) Custom header child node to replace the default text. */
+  headerText?: ReactNode;
+  /** (Optional) Initial search value for the language input field. */
   language?: string;
-  languageInfo?: ReactElement | string;
+  /** (Optional) Text or element to describe the current language,
+   * or function that takes a language code and returns a text/element description. */
+  languageInfo?: ReactNode | ((language: string) => ReactNode);
+  /** (Optional) Object with options for the internal LFP logic. */
   options?: LFPOptions;
 }
 
@@ -35,10 +46,20 @@ export function UnstyledLanguageFontPicker(
     footer,
     headerActions,
     headerText,
-    language,
     languageInfo,
     options,
   } = props;
+
+  const [language, setLanguage] = useState(props.language ?? "");
+  const [langInfo, setLangInfo] = useState<ReactNode>();
+
+  useEffect(() => {
+    setLangInfo(
+      (typeof languageInfo === "function"
+        ? languageInfo(language)
+        : languageInfo) ?? ""
+    );
+  }, [language, languageInfo]);
 
   const { fetchFonts, fonts, toggleFontIsSelected } =
     useLanguageFontPicker(options);
@@ -80,6 +101,9 @@ export function UnstyledLanguageFontPicker(
       <div className={lfpClassNames.Language}>
         <input
           className={lfpClassNames.LanguageInput}
+          onChange={(e) => {
+            setLanguage(e.currentTarget.value);
+          }}
           onSubmit={(e) => {
             fetchFonts(e.currentTarget.value);
           }}
@@ -89,13 +113,12 @@ export function UnstyledLanguageFontPicker(
             }
           }}
           type="text"
-        >
-          {language}
-        </input>
-        {typeof languageInfo === "string" ? (
-          <p className={lfpClassNames.LanguageInfo}>{languageInfo}</p>
+          value={language}
+        />
+        {typeof langInfo === "string" ? (
+          <p className={lfpClassNames.LanguageInfo}>{langInfo}</p>
         ) : (
-          <div className={lfpClassNames.LanguageInfo}>{languageInfo}</div>
+          <div className={lfpClassNames.LanguageInfo}>{langInfo}</div>
         )}
       </div>
 

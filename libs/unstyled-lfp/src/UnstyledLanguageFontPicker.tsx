@@ -55,9 +55,7 @@ export function UnstyledLanguageFontPicker(
 
   useEffect(() => {
     setLangInfo(
-      (typeof languageInfo === "function"
-        ? languageInfo(language)
-        : languageInfo) ?? ""
+      typeof languageInfo === "function" ? languageInfo(language) : languageInfo
     );
   }, [language, languageInfo]);
 

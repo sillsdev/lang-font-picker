@@ -39,10 +39,10 @@ export function UnstyledLanguageFontPicker(
     cancel,
     confirm,
     fontDivider,
+    fontHeadActions,
+    fontHeadText,
     fontRowActions,
     fontRowText,
-    fontTableHeadActions,
-    fontTableHeadText,
     footer,
     headerActions,
     headerText,
@@ -64,10 +64,10 @@ export function UnstyledLanguageFontPicker(
 
   const fontListProps: UnstyledFontListProps = {
     fontDivider,
+    fontHeadActions,
+    fontHeadText,
     fontRowActions,
     fontRowText,
-    fontTableHeadActions,
-    fontTableHeadText,
     fonts,
     toggleFontIsSelected,
   };
@@ -76,13 +76,9 @@ export function UnstyledLanguageFontPicker(
     <div className={lfpClassNames.Main}>
       {/* Header */}
       <div className={lfpClassNames.Header}>
-        {!headerText || typeof headerText === "string" ? (
-          <p className={lfpClassNames.HeaderText}>
-            {headerText || defaultHeaderText}
-          </p>
-        ) : (
-          <div className={lfpClassNames.HeaderText}>{headerText}</div>
-        )}
+        <div className={lfpClassNames.HeaderText}>
+          {headerText || defaultHeaderText}
+        </div>
         <div className={lfpClassNames.HeaderActions}>
           {headerActions ? (
             headerActions

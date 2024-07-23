@@ -57,7 +57,7 @@ export const LanguageInfoText: Story = {
 export const LanguageInfoElement: Story = {
   args: {
     languageInfo: (
-      <p style={{ borderLeft: "5px dashed green" }}>
+      <p style={{ borderLeft: "5px solid green" }}>
         Select a font this language.
       </p>
     ),

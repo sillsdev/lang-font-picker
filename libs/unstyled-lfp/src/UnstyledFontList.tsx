@@ -7,10 +7,10 @@ import { lfpClassNames } from "./types";
 /** FontList props that should also be available to the user. */
 export interface ExternalFontListProps {
   fontDivider?: ReactElement | boolean;
-  fontRowActions?: (rowProps: FontRowProps) => ReactElement;
-  fontRowText?: (rowProps: FontRowProps) => ReactNode;
   fontHeadActions?: ReactElement;
   fontHeadText?: ReactElement;
+  fontRowActions?: (rowProps: FontRowProps) => ReactElement;
+  fontRowText?: (rowProps: FontRowProps) => ReactNode;
 }
 
 /** All FontList props, including those that only the picker component should see. */
@@ -26,10 +26,10 @@ interface FontRowProps extends Partial<FontLFP> {
 export function UnstyledFontList(props: UnstyledFontListProps): ReactElement {
   const {
     fontDivider,
-    fontRowActions,
-    fontRowText,
     fontHeadActions,
     fontHeadText,
+    fontRowActions,
+    fontRowText,
     fonts,
     toggleFontIsSelected,
   } = props;

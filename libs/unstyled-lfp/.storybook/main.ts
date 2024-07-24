@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
@@ -8,6 +9,20 @@ const config: StorybookConfig = {
     options: {
       builder: { viteConfigPath: "vite.config.ts" },
     },
+  },
+  // Config vite server per https://storybook.js.org/docs/builders/vite#configuration
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      server: {
+        // Avoid CORS blockage in development with `nx storybook unstyled-lfp`.
+        proxy: {
+          "/lang": {
+            changeOrigin: true,
+            target: "https://lff.api.languagetechnology.org",
+          },
+        },
+      },
+    });
   },
 };
 

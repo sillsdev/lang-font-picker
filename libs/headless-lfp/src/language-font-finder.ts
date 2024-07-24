@@ -24,7 +24,11 @@ export function sanitizeLang(language: string): string {
 }
 
 const ErrorEmptyLanguages = "Cannot use empty language.";
-const LFFApiUrl = "https://lff.api.languagetechnology.org/lang/";
+// Add to Vite's "server" config a "proxy" for "/lang" to avoid CORS blockage in development.
+const LFFApiUrl =
+  process.env.NODE_ENV === "development"
+    ? "lang/"
+    : "https://lff.api.languagetechnology.org/lang/";
 
 /** Hook for interacting with https://github.com/silnrsi/langfontfinder. */
 export function useLanguageFontFinder(

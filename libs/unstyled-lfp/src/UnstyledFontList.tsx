@@ -1,4 +1,4 @@
-import { type ReactElement } from "react";
+import { type ReactElement, type ReactNode } from "react";
 
 import { FontLFP } from "@lfp/headless-lfp";
 
@@ -7,10 +7,10 @@ import { lfpClassNames } from "./types";
 /** FontList props that should also be available to the user. */
 export interface ExternalFontListProps {
   fontDivider?: ReactElement | boolean;
+  fontHeadActions?: ReactElement;
+  fontHeadText?: ReactElement;
   fontRowActions?: (rowProps: FontRowProps) => ReactElement;
-  fontRowText?: (rowProps: FontRowProps) => ReactElement | string;
-  fontTableHeadActions?: ReactElement;
-  fontTableHeadText?: ReactElement;
+  fontRowText?: (rowProps: FontRowProps) => ReactNode;
 }
 
 /** All FontList props, including those that only the picker component should see. */
@@ -26,22 +26,22 @@ interface FontRowProps extends Partial<FontLFP> {
 export function UnstyledFontList(props: UnstyledFontListProps): ReactElement {
   const {
     fontDivider,
+    fontHeadActions,
+    fontHeadText,
     fontRowActions,
     fontRowText,
-    fontTableHeadActions,
-    fontTableHeadText,
     fonts,
     toggleFontIsSelected,
   } = props;
 
-  const tableRows: ReactElement[] = [];
+  const listRows: ReactElement[] = [];
   fonts.forEach((font, index) => {
     /* Optional divider between fonts */
     if (index && fontDivider) {
-      tableRows.push(
-        <tr className={lfpClassNames.FontDivider} key={`divider-${index}`}>
-          <td>{fontDivider === true ? <hr /> : fontDivider}</td>
-        </tr>
+      listRows.push(
+        <li className={lfpClassNames.FontDivider} key={`divider-${index}`}>
+          {fontDivider === true ? <hr /> : fontDivider}
+        </li>
       );
     }
 
@@ -51,38 +51,30 @@ export function UnstyledFontList(props: UnstyledFontListProps): ReactElement {
       : lfpClassNames.FontRow;
     const rowProps: FontRowProps = { ...font, index };
     const rowText = fontRowText ? fontRowText(rowProps) : font.name;
-    tableRows.push(
-      <tr className={rowClassName} key={`row-${index}`}>
-        <td onClick={() => toggleFontIsSelected(font.name)}>
-          {typeof rowText === "string" ? (
-            <p className={lfpClassNames.FontRowText}>{rowText}</p>
-          ) : (
-            <div className={lfpClassNames.FontRowText}>{rowText}</div>
-          )}
-          <div className={lfpClassNames.FontRowActions}>
-            {fontRowActions ? fontRowActions(rowProps) : null}
-          </div>
-        </td>
-      </tr>
+    listRows.push(
+      <li
+        className={rowClassName}
+        key={`row-${index}`}
+        onClick={() => toggleFontIsSelected(font.name)}
+      >
+        <div className={lfpClassNames.FontRowText}>{rowText}</div>
+        <div className={lfpClassNames.FontRowActions}>
+          {fontRowActions ? fontRowActions(rowProps) : null}
+        </div>
+      </li>
     );
   });
 
   return (
-    <table className={lfpClassNames.FontTable}>
-      <thead className={lfpClassNames.FontTableHead}>
-        <tr>
-          <th>
-            <div className={lfpClassNames.FontTableHeadText}>
-              {fontTableHeadText}
-            </div>
-            <div className={lfpClassNames.FontTableHeadActions}>
-              {fontTableHeadActions}
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody className={lfpClassNames.FontTableBody}>{tableRows}</tbody>
-    </table>
+    <div className={lfpClassNames.FontList}>
+      <div className={lfpClassNames.FontListHead}>
+        <div className={lfpClassNames.FontListHeadText}>{fontHeadText}</div>
+        <div className={lfpClassNames.FontListHeadActions}>
+          {fontHeadActions}
+        </div>
+      </div>
+      <ul className={lfpClassNames.FontListList}>{listRows}</ul>
+    </div>
   );
 }
 

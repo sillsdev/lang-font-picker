@@ -43,6 +43,7 @@ where `<target>` is one of
 - `preview`
 - `serve`
 - `static-serve`
+- `storybook`
 - `test`
 
 and `<project>` is one of
@@ -91,6 +92,14 @@ To lint all projects:
 
 ```bash
 pnpm lint
+```
+
+### Storybooks
+
+To launch the Storybook GUI for `unstyled-lfp` (the only project with stories):
+
+```bash
+nx storybook unstyled-lfp
 ```
 
 ### Run tests

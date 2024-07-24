@@ -1,3 +1,10 @@
+.lfp-main {
+  width: 200px;
+}
+.lfp-font-list-list {
+  list-style-type: none;
+  padding: 0;
+}
 .lfp-font-row-selected {
   background-color: gray;
 }

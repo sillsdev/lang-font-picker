@@ -52,7 +52,7 @@ and `<project>` is one of
 - `lang-font-picker`
 - `unstyled-lfp`
 
-### Build projects
+### Build and serve projects
 
 For a specific `<project>` (e.g., `lang-font-picker`):
 
@@ -68,7 +68,15 @@ pnpm build
 
 The build artifacts are stored in the output directory `dist/`.
 
-### Formatting and Linting
+To build (in memory) and serve `lang-font-picker` (our only app project):
+
+```bash
+nx serve lang-font-picker
+```
+
+Then open the link given your console (http://localhost:4200/) to interact with the app in web browser.
+
+### Formatting and linting
 
 To check formatting on all projects:
 

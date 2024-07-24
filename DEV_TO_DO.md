@@ -26,7 +26,8 @@
 #### `lang-font-picker`
 
 - Add a few interactive options to the demo
-- Add `useLanguageFontFinder` to the README
+- Resolve LFF CORS issue with `nx serve lang-font-picker`:
+  > Access to fetch at 'https://lff.api.languagetechnology.org/lang/en' from origin 'http://localhost:4200' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 
 ### Libs
 
@@ -37,6 +38,7 @@
 #### `headless-lfp`
 
 - Fill in README
+  - Add `useLanguageFontFinder`
 - Implement font fetching
   - https://github.com/silnrsi/fonts/blob/main/documentation/webfonts.md
 - Investigate font caching

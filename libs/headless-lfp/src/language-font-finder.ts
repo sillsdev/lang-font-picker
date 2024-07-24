@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { FontLFF } from "./types";
+import type { FontLFF } from "./types";
 import { fetchJSON } from "./utils";
 
 /** The output type of the useLanguageFontFinder hook. */

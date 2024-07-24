@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import "./stories.css";
-
 import UnstyledLanguageFontPicker from "../UnstyledLanguageFontPicker";
 
 // This default export determines where your story goes in the story list

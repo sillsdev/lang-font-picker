@@ -1,4 +1,4 @@
-import { FontLFF, FontLFP } from "./types";
+import type { FontLFF, FontLFP } from "./types";
 
 /** Given a url, returns the content of the result as a JSON. */
 // ToDo: Add unit tests and verify this works with the LFF api url.

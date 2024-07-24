@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 
-import useLanguageFontFinder, { LFFOptions } from "./language-font-finder";
-import { FontLFP } from "./types";
+import useLanguageFontFinder from "./language-font-finder";
+import type { LFFOptions } from "./language-font-finder";
+import type { FontLFP } from "./types";
 import { convertToFontLFP } from "./utils";
 
 /** The output type of the useLanguageFontPicker hook. */

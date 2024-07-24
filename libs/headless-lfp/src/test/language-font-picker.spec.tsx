@@ -2,7 +2,7 @@ import { act, renderHook } from "@testing-library/react";
 import { vi } from "vitest";
 
 import useLanguageFontPicker from "../language-font-picker";
-import { FontFamilyLFF, FontLFF } from "../types";
+import type { FontFamilyLFF, FontLFF } from "../types";
 
 // https://vitest.dev/api/vi.html#vi-mock
 const mockLFF = vi.hoisted(() => ({

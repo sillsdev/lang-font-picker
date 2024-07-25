@@ -1,6 +1,6 @@
-import { type ReactElement, type ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 
-import { FontLFP } from "@lfp/headless-lfp";
+import type { FontLFP } from "@lfp/headless-lfp";
 
 import { lfpClassNames } from "./types";
 

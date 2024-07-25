@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { FontLFF } from "./types";
+import type { FontLFF } from "./types";
 import { fetchJSON } from "./utils";
 
 /** The output type of the useLanguageFontFinder hook. */
@@ -24,7 +24,11 @@ export function sanitizeLang(language: string): string {
 }
 
 const ErrorEmptyLanguages = "Cannot use empty language.";
-const LFFApiUrl = "https://lff.api.languagetechnology.org/lang/";
+// Add to Vite's "server" config a "proxy" for "/lang" to avoid CORS blockage in development.
+const LFFApiUrl =
+  import.meta.env.MODE === "development"
+    ? "lang/"
+    : "https://lff.api.languagetechnology.org/lang/";
 
 /** Hook for interacting with https://github.com/silnrsi/langfontfinder. */
 export function useLanguageFontFinder(

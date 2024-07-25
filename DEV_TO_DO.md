@@ -26,7 +26,6 @@
 #### `lang-font-picker`
 
 - Add a few interactive options to the demo
-- Add `useLanguageFontFinder` to the README
 
 ### Libs
 
@@ -37,6 +36,7 @@
 #### `headless-lfp`
 
 - Fill in README
+  - Add `useLanguageFontFinder`
 - Implement font fetching
   - https://github.com/silnrsi/fonts/blob/main/documentation/webfonts.md
 - Investigate font caching

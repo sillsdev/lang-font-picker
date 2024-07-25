@@ -1,11 +1,14 @@
-import { type ReactElement, type ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import type { ReactElement, ReactNode } from "react";
 
-import useLanguageFontPicker, { type LFPOptions } from "@lfp/headless-lfp";
+import useLanguageFontPicker from "@lfp/headless-lfp";
+import type { LFPOptions } from "@lfp/headless-lfp";
 
 import { lfpClassNames } from "./types";
-import UnstyledFontList, {
-  type ExternalFontListProps,
-  type UnstyledFontListProps,
+import UnstyledFontList from "./UnstyledFontList";
+import type {
+  ExternalFontListProps,
+  UnstyledFontListProps,
 } from "./UnstyledFontList";
 
 /** The input props of the UnstyledLanguageFontPicker component. */
@@ -109,11 +112,7 @@ export function UnstyledLanguageFontPicker(
           type="text"
           value={language}
         />
-        {typeof langInfo === "string" ? (
-          <p className={lfpClassNames.LanguageInfo}>{langInfo}</p>
-        ) : (
-          <div className={lfpClassNames.LanguageInfo}>{langInfo}</div>
-        )}
+        <div className={lfpClassNames.LanguageInfo}>{langInfo}</div>
       </div>
 
       {/* Fonts */}

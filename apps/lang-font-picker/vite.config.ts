@@ -10,6 +10,13 @@ export default defineConfig({
   server: {
     port: 4200,
     host: "localhost",
+    proxy: {
+      // Avoid CORS blockage in development with `nx serve lang-font-picker`.
+      "/lang": {
+        changeOrigin: true,
+        target: "https://lff.api.languagetechnology.org",
+      },
+    },
   },
 
   preview: {

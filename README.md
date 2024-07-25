@@ -177,14 +177,13 @@ and in `project.json`:
 
 Vite provides the following environment variables, accessed via `import.meta.env.*`:
 
-|             | `nx preview`   | `nx serve `     | `nx storybook`  | `nx test` |
+|             | `nx preview`   | `nx serve`      | `nx storybook`  | `nx test` |
 | ----------- | -------------- | --------------- | --------------- | --------- |
 | `DEV`       | `false`        | `true`          | `true`          | `true`    |
 | `MODE`      | `"production"` | `"development"` | `"development"` | `"test"`  |
 | `PROD`      | `true`         | `false`         | `false`         | `false`   |
 | `STORYBOOK` | n/a            | n/a             | `"true"`        | n/a       |
 | `TEST`      | n/a            | n/a             | n/a             | `"true"`  |
-| `VITEST`    | n/a            | n/a             | n/a             | `"true"`  |
 
 See https://vitejs.dev/guide/env-and-mode.html for more details,
 including setting and using environment variables with `.env*` files.

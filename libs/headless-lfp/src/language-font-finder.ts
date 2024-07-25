@@ -26,7 +26,7 @@ export function sanitizeLang(language: string): string {
 const ErrorEmptyLanguages = "Cannot use empty language.";
 // Add to Vite's "server" config a "proxy" for "/lang" to avoid CORS blockage in development.
 const LFFApiUrl =
-  process.env.NODE_ENV === "development"
+  import.meta.env.MODE === "development"
     ? "lang/"
     : "https://lff.api.languagetechnology.org/lang/";
 

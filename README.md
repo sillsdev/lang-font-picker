@@ -32,7 +32,7 @@ pnpm add -g nx@18
 
 Project-specific tasks are generally executed with Nx using
 
-```bash
+```console
 nx <target> <project> <...options>
 ```
 
@@ -52,53 +52,71 @@ and `<project>` is one of
 - `lang-font-picker`
 - `unstyled-lfp`
 
-### Build and serve projects
+### Build and preview projects
 
 For a specific `<project>` (e.g., `lang-font-picker`):
 
-```bash
+```console
 nx build <project>
 ```
 
 To run on all projects:
 
-```bash
+```console
 pnpm build
 ```
 
 The build artifacts are stored in the output directory `dist/`.
 
-To build (in memory) and serve `lang-font-picker` (our only app project):
+For a production preview of `lang-font-picker` (our only app project):
 
-```bash
+```console
+nx build lang-font-picker
+nx preview lang-font-picker
+```
+
+Then open the link given in your console (http://localhost:4300/) to interact with the app in web browser.
+If you make any changes to the code, you must run the `build` and `preview` commands again to see the changes.
+
+Calls to the LFF api will not work, because the browser blocks calls to the LFF api from `http://localhost`.
+This is only an issue in "production" mode;
+we've added proxies to bypass this issue in "development" (with `nx serve ...` and `nx storybook ...`).
+
+### Serve app projects
+
+To serve `lang-font-picker` (our only app project):
+
+```console
 nx serve lang-font-picker
 ```
 
-Then open the link given your console (http://localhost:4200/) to interact with the app in web browser.
+Then open the link given in your console (http://localhost:4200/) to interact with the app in web browser.
+
+The app will automatically update as you make changes to the code.
 
 ### Formatting and linting
 
 To check formatting on all projects:
 
-```bash
+```console
 pnpm format:check
 ```
 
 To fix formatting on all projects:
 
-```bash
+```console
 pnpm format:write
 ```
 
 To lint a specific `<project>` (e.g., `lang-font-picker`):
 
-```bash
+```console
 nx lint <project>
 ```
 
 To lint all projects:
 
-```bash
+```console
 pnpm lint
 ```
 
@@ -106,7 +124,7 @@ pnpm lint
 
 To launch the Storybook GUI for `unstyled-lfp` (the only project with stories):
 
-```bash
+```console
 nx storybook unstyled-lfp
 ```
 
@@ -114,25 +132,25 @@ nx storybook unstyled-lfp
 
 For a specific `<project>` (e.g., `lang-font-picker`):
 
-```bash
+```console
 nx test <project>
 ```
 
 To run on all projects:
 
-```bash
+```console
 pnpm test
 ```
 
 ### Visualize Nx projects
 
-```bash
+```console
 nx graph
 ```
 
 To see the targets available for a specific `<project>` (e.g., `lang-font-picker`):
 
-```bash
+```console
 nx show project <project> --web
 ```
 
@@ -142,7 +160,7 @@ nx show project <project> --web
 
 For a new project with a library (e.g. an internal utility or reusable component) named `<library>`:
 
-```bash
+```console
 nx g @nx/react:library --bundler=vite --component=false --directory=libs/<library> --unitTestRunner=vitest <library>
 ```
 
@@ -154,6 +172,22 @@ and in `project.json`:
 
 - change the `sourceRoot` line to `  "sourceRoot": "{projectRoot}/src",`;
 - delete the `// targets` line.
+
+## Environment variables
+
+Vite provides the following environment variables, accessed via `import.meta.env.*`:
+
+|             | `nx preview`   | `nx serve `     | `nx storybook`  | `nx test` |
+| ----------- | -------------- | --------------- | --------------- | --------- |
+| `DEV`       | `false`        | `true`          | `true`          | `true`    |
+| `MODE`      | `"production"` | `"development"` | `"development"` | `"test"`  |
+| `PROD`      | `true`         | `false`         | `false`         | `false`   |
+| `STORYBOOK` | n/a            | n/a             | `"true"`        | n/a       |
+| `TEST`      | n/a            | n/a             | n/a             | `"true"`  |
+| `VITEST`    | n/a            | n/a             | n/a             | `"true"`  |
+
+See https://vitejs.dev/guide/env-and-mode.html for more details,
+including setting and using environment variables with `.env*` files.
 
 ## Add React content to a project
 

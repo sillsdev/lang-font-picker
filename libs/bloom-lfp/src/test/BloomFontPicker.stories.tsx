@@ -57,7 +57,7 @@ const fontMetadata: FontMetaData[] = [
 
 type Story = StoryObj<typeof BloomFontPicker>;
 
-export const MultiselectOff: Story = {
+export const BloomLFP: Story = {
   args: {
     currentFontName: fontMetadata[0].name,
     fontMetadata,

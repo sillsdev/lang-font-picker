@@ -1,7 +1,10 @@
 # bloom-lfp
 
-This library was generated with [Nx](https://nx.dev).
+This Language Picker was extracted from Bloom Desktop v6 as found in
+https://github.com/BloomBooks/BloomDesktop/tree/Version6.0/src/BloomBrowserUI
+with the goal of expanding/modifying the design of `headless-lfp` (and possibly `unstyled-lfp`)
+so that it can be used with Bloom.
 
-## Running unit tests
+## Running Storybook stories
 
-Run `nx test bloom-lfp` to execute the unit tests via [Vitest](https://vitest.dev/).
+Run `nx storybook bloom-lfp` to launch Storybook with this project.

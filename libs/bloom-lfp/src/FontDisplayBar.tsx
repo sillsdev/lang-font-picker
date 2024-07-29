@@ -1,10 +1,6 @@
 import { css } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
-import {
-  CheckCircle as OkIcon,
-  Error as UnsuitableIcon,
-  Help as UnknownIcon,
-} from "@mui/icons-material";
+import { CheckCircle, Error, Help } from "@mui/icons-material";
 import * as React from "react";
 import { useDebouncedCallback } from "use-debounce";
 
@@ -18,9 +14,10 @@ import { FontMetaData } from "./types";
 
 interface FontDisplayBarProps {
   fontMetadata: FontMetaData;
-  inDropdownList: boolean;
-  isPopoverOpen: boolean;
+  isPopoverOpen?: boolean;
+  isSelected?: boolean;
   onHover?: (hoverTarget: HTMLElement, metadata: FontMetaData) => void;
+  suitabilityCheck?: boolean;
 }
 
 /** Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/react_components/fontDisplayBar.tsx */
@@ -60,26 +57,32 @@ const FontDisplayBar: React.FunctionComponent<FontDisplayBarProps> = (
         padding-right: 3px !important;
       `}
     >
-      {suitability === "ok" && (
-        <OkIcon htmlColor={kBloomBlue} {...commonProps} />
-      )}
-      {suitability === "unknown" && (
-        <UnknownIcon
-          htmlColor={props.inDropdownList ? kDisabledControlGray : kBloomGold}
-          {...commonProps}
-        />
-      )}
-      {(suitability === "unsuitable" || suitability === "invalid") && (
-        <UnsuitableIcon
-          htmlColor={props.inDropdownList ? kDisabledControlGray : kErrorColor}
-          {...commonProps}
-        />
+      {props.suitabilityCheck ? (
+        suitability === "ok" ? (
+          <CheckCircle htmlColor={kBloomBlue} {...commonProps} />
+        ) : suitability === "unknown" ? (
+          <Help
+            htmlColor={props.isSelected ? kBloomGold : kDisabledControlGray}
+            {...commonProps}
+          />
+        ) : (
+          <Error
+            htmlColor={props.isSelected ? kErrorColor : kDisabledControlGray}
+            {...commonProps}
+          />
+        )
+      ) : (
+        <Help htmlColor={kBloomBlue} {...commonProps} />
       )}
     </Box>
   );
 
   const shouldGrayOutText = (): boolean => {
-    return props.inDropdownList && suitability !== "ok";
+    return !(
+      props.isSelected ||
+      !props.suitabilityCheck ||
+      suitability === "ok"
+    );
   };
   const textColor = `color: ${
     shouldGrayOutText() ? kDisabledControlGray : "black"

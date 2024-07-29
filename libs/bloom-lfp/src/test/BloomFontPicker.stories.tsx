@@ -57,10 +57,20 @@ const fontMetadata: FontMetaData[] = [
 
 type Story = StoryObj<typeof BloomFontPicker>;
 
-export const BloomLFP: Story = {
+export const WithSuitabilityCheck: Story = {
   args: {
     currentFontName: fontMetadata[0].name,
     fontMetadata,
     languageNumber: 0,
+    suitabilityCheck: true,
+  },
+};
+
+export const WithoutSuitabilityCheck: Story = {
+  args: {
+    currentFontName: fontMetadata[0].name,
+    fontMetadata,
+    languageNumber: 0,
+    suitabilityCheck: false,
   },
 };

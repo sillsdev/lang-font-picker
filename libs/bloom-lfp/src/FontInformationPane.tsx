@@ -13,6 +13,7 @@ import { FontMetaData, useL10nHookType } from "./types";
 /** Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/react_components/fontInformationPane.tsx */
 const FontInformationPane: FunctionComponent<{
   metadata?: FontMetaData;
+  suitabilityCheck?: boolean;
   useL10n?: useL10nHookType;
 }> = (props) => {
   const variantString =
@@ -69,8 +70,10 @@ const FontInformationPane: FunctionComponent<{
     message += `manufacturerURL: ${fontData.manufacturerURL}\n`;
     message += `fsType: ${fontData.fsType}\n`;
     message += `styles: ${fontData.variants?.toString()}\n`;
-    message += `determinedSuitability: ${fontData.determinedSuitability}\n`;
-    message += `determinedSuitabilityNotes: ${fontData.determinedSuitabilityNotes}\n`;
+    if (props.suitabilityCheck) {
+      message += `determinedSuitability: ${fontData.determinedSuitability}\n`;
+      message += `determinedSuitabilityNotes: ${fontData.determinedSuitabilityNotes}\n`;
+    }
     alert(message);
   };
 
@@ -121,16 +124,18 @@ const FontInformationPane: FunctionComponent<{
             width: 200px;
           `}
         >
-          {/* Primary text message */}
-          <Typography
-            color={textColor}
-            variant="body2"
-            sx={css`
-              margin-bottom: 10px !important;
-            `}
-          >
-            {mainMessage}
-          </Typography>
+          {/* Primary license message */}
+          {props.suitabilityCheck && (
+            <Typography
+              color={textColor}
+              variant="body2"
+              sx={css`
+                margin-bottom: 10px !important;
+              `}
+            >
+              {mainMessage}
+            </Typography>
+          )}
           {/* Font name */}
           <Typography
             variant="subtitle2"
@@ -182,7 +187,7 @@ const FontInformationPane: FunctionComponent<{
               linkText={licenseWording}
             />
           )}
-          {suitability !== "ok" && (
+          {props.suitabilityCheck && suitability !== "ok" && (
             <InfoOutlinedIcon
               htmlColor={kDisabledControlGray}
               sx={css`

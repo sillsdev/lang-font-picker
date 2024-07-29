@@ -17,14 +17,15 @@ import WinFormsStyleSelect from "./WinFormsStyleSelect";
 import { FontMetaData, useL10nHookType } from "./types";
 
 interface FontSelectProps {
-  fontMetadata?: FontMetaData[];
   currentFontName: string;
-  // In case multiple font selects are in the DOM at the same time increases, require a number to use as a key.
+  fontMetadata?: FontMetaData[];
+  /** In case multiple font selects are in the DOM at the same time increases, require a number to use as a key. */
   languageNumber: number;
   onChangeFont?: (fontname: string) => void;
-  // Use this if you need to modify the style of popup menus by increasing z-index
-  // (e.g., to make the popup be in front of the font dialog)
+  /** Use this if you need to modify the style of popup menus by increasing z-index
+   * (e.g., to make the popup be in front of the font dialog) */
   popoverZindex?: string;
+  suitabilityCheck?: boolean;
   useL10n?: useL10nHookType;
 }
 
@@ -84,8 +85,9 @@ const FontSelectComponent: FunctionComponent<FontSelectProps> = (props) => {
         >
           <FontDisplayBar
             fontMetadata={font}
-            inDropdownList={font !== fontChoice}
             isPopoverOpen
+            isSelected={font === fontChoice}
+            suitabilityCheck={props.suitabilityCheck}
             onHover={handlePopoverOpen}
           />
         </MenuItem>
@@ -113,8 +115,8 @@ const FontSelectComponent: FunctionComponent<FontSelectProps> = (props) => {
   return (
     <ThemeProvider theme={lightTheme}>
       <WinFormsStyleSelect
-        idKey={finalKey}
         currentValue={textValue}
+        idKey={finalKey}
         onChangeHandler={handleFontChange}
         popoverZindex={props.popoverZindex}
       >

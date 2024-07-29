@@ -1,20 +1,20 @@
-/** Copied from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/bookEdit/StyleEditor/fontSelectComponent.tsx */
+/** Copied from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/bookEdit/StyleEditor/fontSelectComponent.tsx
+ * (cf. https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomExe/FontProcessing/FontMetadata.cs) */
 export interface FontMetaData {
-  name: string;
-  version?: string;
-  license?: string;
-  licenseURL?: string;
   copyright?: string;
-  manufacturer?: string;
-  manufacturerURL?: string;
-  fsType?: string;
-  variants?: string[];
   designer?: string;
   designerURL?: string;
-  trademark?: string;
-  // These values are also listed in FontMetadata in src/BloomExe/FontProcessing/FontMetadata.cs.
-  determinedSuitability: "ok" | "unknown" | "unsuitable" | "invalid";
+  determinedSuitability?: "ok" | "unknown" | "unsuitable" | "invalid";
   determinedSuitabilityNotes?: string;
+  fsType?: string;
+  license?: string;
+  licenseURL?: string;
+  manufacturer?: string;
+  manufacturerURL?: string;
+  name: string;
+  trademark?: string;
+  variants?: string[];
+  version?: string;
 }
 
 /** Extracted from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/react_components/l10nHooks.ts */

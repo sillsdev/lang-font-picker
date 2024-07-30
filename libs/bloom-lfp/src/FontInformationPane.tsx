@@ -1,5 +1,5 @@
 import { css } from "@emotion/react";
-import { Box, Button, Link, Typography } from "@mui/material";
+import { IconButton, Link, Stack, Typography } from "@mui/material";
 import {
   Close as CloseIcon,
   InfoOutlined as InfoOutlinedIcon,
@@ -35,23 +35,23 @@ const FontInformationPane: FunctionComponent<{
       ? props.useL10n(args[0], args[1], args[2], args[3], args[4])
       : args[0];
 
-  const OkayFontMessage = useL10n(fontInfoText.okayFontMessage);
-  const UnknownFontMessage = useL10n(fontInfoText.unknownFontMessage);
-  const UnsuitableFontFormatMessage = useL10n(
+  const okayFontMessage = useL10n(fontInfoText.okayFontMessage);
+  const unknownFontMessage = useL10n(fontInfoText.unknownFontMessage);
+  const unsuitableFontFormatMessage = useL10n(
     fontInfoText.unsuitableFontFormatMessage
   );
-  const UnsuitableFontLicenseMessage = useL10n(
+  const unsuitableFontLicenseMessage = useL10n(
     fontInfoText.unsuitableFontLicenseMessage
   );
 
   const mainMessage =
     suitability === "ok"
-      ? OkayFontMessage
+      ? okayFontMessage
       : suitability === "unknown"
-        ? UnknownFontMessage
+        ? unknownFontMessage
         : suitability === "invalid"
-          ? UnsuitableFontFormatMessage
-          : UnsuitableFontLicenseMessage;
+          ? unsuitableFontFormatMessage
+          : unsuitableFontLicenseMessage;
 
   const styleWording = useL10n(fontInfoText.styleWording);
   const versionWording = useL10n(fontInfoText.versionWording);
@@ -87,40 +87,29 @@ const FontInformationPane: FunctionComponent<{
   );
 
   return (
-    <Box
-      sx={css`
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-      `}
-    >
-      <Button
-        startIcon={<CloseIcon htmlColor="white" />}
+    <Stack direction="row-reverse" alignItems="flex-start">
+      <IconButton
         size="small"
         // Clicking anywhere on the pane works, but w/o the button the user might not know this.
         onClick={() => {
           // Do nothing
         }}
         sx={css`
-          order: 1; // put icon in upper right corner
-          padding: 2px !important;
-          min-width: unset !important;
           background-color: ${kBloomBlue} !important;
-          margin-top: 2px !important;
-          margin-right: 2px !important;
-          span span {
-            margin: 0 !important;
-          }
+          border-radius: 4px;
+          margin: 2px;
+          padding: 0px;
         `}
-      />
+      >
+        <CloseIcon htmlColor="white" />
+      </IconButton>
       {!props.metadata || (
-        <Box
+        <Stack
+          direction="column"
           sx={css`
-            display: flex;
             flex: 1;
-            flex-direction: column;
             padding: 10px;
-            padding-right: 2px; // because close icon takes up space
+            padding-right: 0px; // because close icon takes up space
             width: 200px;
           `}
         >
@@ -128,24 +117,16 @@ const FontInformationPane: FunctionComponent<{
           {props.suitabilityCheck && (
             <Typography
               color={textColor}
-              variant="body2"
               sx={css`
                 margin-bottom: 10px !important;
               `}
+              variant="body2"
             >
               {mainMessage}
             </Typography>
           )}
           {/* Font name */}
-          <Typography
-            variant="subtitle2"
-            sx={css`
-              // 'subtitle2' variant ought to be enough, but wasn't; encourage actual bolding
-              font-weight: 800;
-            `}
-          >
-            {props.metadata.name}
-          </Typography>
+          <Typography variant="subtitle2">{props.metadata.name}</Typography>
           {/* Variant style (bold, italic, etc.) */}
           {variantString && (
             <Typography variant="body2">
@@ -190,17 +171,17 @@ const FontInformationPane: FunctionComponent<{
           {props.suitabilityCheck && suitability !== "ok" && (
             <InfoOutlinedIcon
               htmlColor={kDisabledControlGray}
+              onClick={() => showFontDeveloperData(props.metadata)}
               sx={css`
                 position: absolute !important;
                 bottom: 4px;
                 right: 4px;
               `}
-              onClick={() => showFontDeveloperData(props.metadata)}
             />
           )}
-        </Box>
+        </Stack>
       )}
-    </Box>
+    </Stack>
   );
 };
 

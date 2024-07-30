@@ -1,4 +1,4 @@
-/** Copied an modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/bookEdit/StyleEditor/fontSelectComponent.tsx */
+/** Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/bookEdit/StyleEditor/fontSelectComponent.tsx */
 
 import { css } from "@emotion/react";
 import {
@@ -132,7 +132,11 @@ const FontSelectComponent: FunctionComponent<FontSelectProps> = (props) => {
         disableRestoreFocus
         onClick={handlePopoverClose}
       >
-        <FontInformationPane metadata={popoverFont} useL10n={props.useL10n} />
+        <FontInformationPane
+          metadata={popoverFont}
+          suitabilityCheck={props.suitabilityCheck}
+          useL10n={props.useL10n}
+        />
       </Popover>
     </ThemeProvider>
   );

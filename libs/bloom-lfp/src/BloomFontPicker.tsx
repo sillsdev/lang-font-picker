@@ -71,7 +71,7 @@ const FontSelectComponent: FunctionComponent<FontSelectProps> = (props) => {
   const isPopoverOpen = Boolean(popoverAnchorElement);
 
   const getMenuItemsFromFontMetaData = (): JSX.Element[] => {
-    if (!props.fontMetadata) return Array(<div />);
+    if (!props.fontMetadata) return Array(<div key="empty" />);
     return props.fontMetadata.map((font, index) => {
       return (
         <MenuItem

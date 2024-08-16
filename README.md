@@ -48,6 +48,7 @@ where `<target>` is one of
 
 and `<project>` is one of
 
+- `bloom-lfp`
 - `headless-lfp`
 - `lang-font-picker`
 - `unstyled-lfp`

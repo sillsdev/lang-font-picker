@@ -1,4 +1,4 @@
-/** Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/bookEdit/StyleEditor/fontSelectComponent.tsx */
+// Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/bookEdit/StyleEditor/fontSelectComponent.tsx
 
 import { css } from "@emotion/react";
 import {
@@ -8,7 +8,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { lightTheme } from "./BloomMuiTheme";
 import FontDisplayBar from "./FontDisplayBar";
@@ -21,7 +21,7 @@ interface FontSelectProps {
   fontMetadata?: FontMetaData[];
   /** In case multiple font selects are in the DOM at the same time increases, require a number to use as a key. */
   languageNumber: number;
-  onChangeFont?: (fontname: string) => void;
+  onChangeFont?: (fontName: string) => void;
   /** Use this if you need to modify the style of popup menus by increasing z-index
    * (e.g., to make the popup be in front of the font dialog) */
   popoverZindex?: string;
@@ -29,7 +29,7 @@ interface FontSelectProps {
   useL10n?: useL10nHookType;
 }
 
-const FontSelectComponent: FunctionComponent<FontSelectProps> = (props) => {
+export default function FontSelectComponent(props: FontSelectProps) {
   const getFontDataFromName = useCallback(
     (fontName: string) => {
       if (!props.fontMetadata) return;
@@ -140,6 +140,4 @@ const FontSelectComponent: FunctionComponent<FontSelectProps> = (props) => {
       </Popover>
     </ThemeProvider>
   );
-};
-
-export default FontSelectComponent;
+}

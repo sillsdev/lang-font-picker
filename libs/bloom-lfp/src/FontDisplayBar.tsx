@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import { Box, Typography } from "@mui/material";
 import { CheckCircle, Error, Help } from "@mui/icons-material";
-import * as React from "react";
+import { MouseEvent } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 import {
@@ -21,9 +21,7 @@ interface FontDisplayBarProps {
 }
 
 /** Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/react_components/fontDisplayBar.tsx */
-const FontDisplayBar: React.FunctionComponent<FontDisplayBarProps> = (
-  props
-) => {
+export default function FontDisplayBar(props: FontDisplayBarProps) {
   const suitability = props.fontMetadata.determinedSuitability;
   const ariaOwns = props.isPopoverOpen ? "mouse-over-popover" : undefined;
 
@@ -33,7 +31,7 @@ const FontDisplayBar: React.FunctionComponent<FontDisplayBarProps> = (
     props.onHover(target, props.fontMetadata);
   }, kHoverDelay);
 
-  const handleMouseEnter = (event: React.MouseEvent) => {
+  const handleMouseEnter = (event: MouseEvent) => {
     if (!props.onHover) return;
     debouncedPopover(event.currentTarget as HTMLElement);
   };
@@ -112,6 +110,4 @@ const FontDisplayBar: React.FunctionComponent<FontDisplayBarProps> = (
       {getIconForFont()}
     </Box>
   );
-};
-
-export default FontDisplayBar;
+}

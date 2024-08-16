@@ -6,7 +6,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { ThemeProvider, Theme } from "@mui/material/styles";
-import { FunctionComponent, ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { lightTheme } from "./BloomMuiTheme";
 
@@ -41,7 +41,7 @@ interface FormsSelectProps {
  * Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/react_components/winFormsStyleSelect.tsx
  * This component initially attempted to imitate a winforms combobox, but that restriction has relaxed.
  */
-const WinFormsStyleSelect: FunctionComponent<FormsSelectProps> = (props) => {
+export default function WinFormsStyleSelect(props: FormsSelectProps) {
   const selectMenuProps: Partial<MenuProps> = {
     classes: {
       // TODO: migrate away from MUIv4's useStyle usage:
@@ -116,6 +116,4 @@ const WinFormsStyleSelect: FunctionComponent<FormsSelectProps> = (props) => {
       </FormControl>
     </ThemeProvider>
   );
-};
-
-export default WinFormsStyleSelect;
+}

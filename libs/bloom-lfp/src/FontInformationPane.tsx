@@ -4,18 +4,19 @@ import {
   Close as CloseIcon,
   InfoOutlined as InfoOutlinedIcon,
 } from "@mui/icons-material";
-import { FunctionComponent } from "react";
 
 import fontInfoText from "./BloomInfoText";
 import { kBloomBlue, kDisabledControlGray } from "./BloomMuiTheme";
 import { FontMetaData, useL10nHookType } from "./types";
 
-/** Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/react_components/fontInformationPane.tsx */
-const FontInformationPane: FunctionComponent<{
+interface FontInformationPaneProps {
   metadata?: FontMetaData;
   suitabilityCheck?: boolean;
   useL10n?: useL10nHookType;
-}> = (props) => {
+}
+
+/** Copied and modified from https://github.com/BloomBooks/BloomDesktop/blob/Version6.0/src/BloomBrowserUI/react_components/fontInformationPane.tsx */
+export default function FontInformationPane(props: FontInformationPaneProps) {
   const variantString =
     props.metadata && props.metadata.variants
       ? props.metadata.variants.join(", ")
@@ -77,14 +78,18 @@ const FontInformationPane: FunctionComponent<{
     alert(message);
   };
 
-  const SmallLink: FunctionComponent<{
+  interface SmallLinkProps {
     href: string;
     linkText: string;
-  }> = (props) => (
-    <Link variant="body2" underline="always" href={props.href}>
-      {props.linkText}
-    </Link>
-  );
+  }
+
+  function SmallLink(props: SmallLinkProps) {
+    return (
+      <Link variant="body2" underline="always" href={props.href}>
+        {props.linkText}
+      </Link>
+    );
+  }
 
   return (
     <Stack direction="row-reverse" alignItems="flex-start">
@@ -183,6 +188,4 @@ const FontInformationPane: FunctionComponent<{
       )}
     </Stack>
   );
-};
-
-export default FontInformationPane;
+}

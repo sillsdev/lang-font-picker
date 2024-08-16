@@ -48,6 +48,7 @@ where `<target>` is one of
 
 and `<project>` is one of
 
+- `bloom-lfp`
 - `headless-lfp`
 - `lang-font-picker`
 - `unstyled-lfp`
@@ -122,10 +123,10 @@ pnpm lint
 
 ### Storybooks
 
-To launch the Storybook GUI for `unstyled-lfp` (the only project with stories):
+To launch the Storybook GUI for <project> with stories (i.e., `bloom-lfp` or `unstyled-lfp`):
 
 ```console
-nx storybook unstyled-lfp
+nx storybook <project>
 ```
 
 ### Run tests

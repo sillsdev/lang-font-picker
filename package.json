@@ -1,6 +1,6 @@
 {
   "name": "@lfp/source",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
     "format:write": "prettier -w .",
     "lint": "nx run-many --all -t lint",
     "preinstall": "npx only-allow pnpm",
+    "prepare": "nx g @nx-dotnet/core:restore",
     "test": "nx run-many --all -t test"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
+    "@nx-dotnet/core": "^2.4.3",
     "@nx/eslint": "~18.3.5",
     "@nx/eslint-plugin": "~18.3.5",
     "@nx/js": "~18.3.5",

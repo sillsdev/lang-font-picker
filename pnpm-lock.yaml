@@ -30,6 +30,9 @@ importers:
       '@mui/material':
         specifier: ^5.16.7
         version: 5.16.7(@emotion/react@11.13.0)(@emotion/styled@11.13.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
+      '@nx-dotnet/core':
+        specifier: ^2.4.3
+        version: 2.4.3(@nx/js@18.3.5)(eslint@8.57.0)(nx@18.3.5)(prettier@3.3.3)
       '@nx/eslint':
         specifier: ~18.3.5
         version: 18.3.5(@swc-node/register@1.10.9)(@swc/core@1.7.11)(@types/node@20.15.0)(nx@18.3.5)
@@ -2684,6 +2687,14 @@ packages:
       - nx
     dev: true
 
+  /@nrwl/devkit@19.5.3(nx@18.3.5):
+    resolution: {integrity: sha512-kd6eIQjWuFHdO14wVu0rzGtoPbO3EdYM/3gATOupxBzlqD+7dmkvv1Olbri9v598mDApXQNo8q81L2masTAhvg==}
+    dependencies:
+      '@nx/devkit': 19.5.3(nx@18.3.5)
+    transitivePeerDependencies:
+      - nx
+    dev: true
+
   /@nrwl/eslint-plugin-nx@18.3.5(@swc-node/register@1.10.9)(@swc/core@1.7.11)(@types/node@20.15.0)(@typescript-eslint/parser@7.18.0)(eslint-config-prettier@9.1.0)(eslint@8.57.0)(nx@18.3.5)(typescript@5.5.4):
     resolution: {integrity: sha512-E3ysbO3BT/bx8gZJQX65YsU/MvsuLP/+gL7Xnm0lEOfm9rIdwY6iRRTmQNUIExDBzVlleLruqIPBK11Dr5H/lA==}
     dependencies:
@@ -2834,6 +2845,65 @@ packages:
       - debug
     dev: true
 
+  /@nx-dotnet/core@2.4.3(@nx/js@18.3.5)(eslint@8.57.0)(nx@18.3.5)(prettier@3.3.3):
+    resolution: {integrity: sha512-X/XCkGSTf1nvApM0TSEIW0cPia3nopORnL1KANpZ6Yups5Nzz+6VFuZZHF0SdMz8vKbYWLrvx8BoitqLjEnEiA==}
+    requiresBuild: true
+    peerDependencies:
+      '@nx/js': '>=16.0.0-beta.1'
+      '@openapitools/openapi-generator-cli': 2.13.4
+      eslint: '>8.0.0'
+      nx: '>=18.0.0 <20.0.0'
+      prettier: '>=2.0.0'
+    peerDependenciesMeta:
+      '@nx/js':
+        optional: true
+      '@openapitools/openapi-generator-cli':
+        optional: true
+      eslint:
+        optional: true
+      prettier:
+        optional: true
+    dependencies:
+      '@nx-dotnet/dotnet': 2.4.3(nx@18.3.5)
+      '@nx-dotnet/utils': 2.4.3(nx@18.3.5)
+      '@nx/devkit': 19.5.3(nx@18.3.5)
+      '@nx/js': 18.3.5(@swc-node/register@1.10.9)(@swc/core@1.7.11)(@types/node@20.15.0)(nx@18.3.5)(typescript@5.5.4)
+      eslint: 8.57.0
+      fast-glob: 3.2.12
+      inquirer: 8.2.6
+      minimatch: 3.1.2
+      nx: 18.3.5(@swc-node/register@1.10.9)(@swc/core@1.7.11)
+      prettier: 3.3.3
+      semver: 7.5.4
+      tmp: 0.2.3
+      tslib: 2.6.3
+      xmldoc: 1.3.0
+      yargs-parser: 21.1.1
+    dev: true
+
+  /@nx-dotnet/dotnet@2.4.3(nx@18.3.5):
+    resolution: {integrity: sha512-ULd0QjFHZb6ich46LmAE1c5REBPtPCpwD82n024sLhSom6TYYv10SFux8HMgt5FT890fidPbsDWx87g85/uPGQ==}
+    dependencies:
+      '@nx-dotnet/utils': 2.4.3(nx@18.3.5)
+      semver: 7.5.4
+      tslib: 2.6.3
+    transitivePeerDependencies:
+      - nx
+    dev: true
+
+  /@nx-dotnet/utils@2.4.3(nx@18.3.5):
+    resolution: {integrity: sha512-Xd5VRUioxkaGoUPHJ+EgXxDr198km70/PsAvgIlXcLEoiPJ5SrVboYi8kStnuxZeaZugh+oJUfDFu1cF2PUZ2A==}
+    dependencies:
+      '@nx/devkit': 19.5.3(nx@18.3.5)
+      fast-glob: 3.2.12
+      rimraf: 3.0.2
+      semver: 7.5.4
+      tslib: 2.6.3
+      xmldoc: 1.3.0
+    transitivePeerDependencies:
+      - nx
+    dev: true
+
   /@nx/cypress@18.3.5(@swc-node/register@1.10.9)(@swc/core@1.7.11)(@types/node@20.15.0)(nx@18.3.5)(typescript@5.5.4):
     resolution: {integrity: sha512-02wB/tuctBHO3IyOs4F1wMHc566BWcC4Trj4x9BAXj1fI8WI9GF1/tNF0Yzwf1pe9QKqmSFp9zg07+tus++eQg==}
     peerDependencies:
@@ -2873,6 +2943,23 @@ packages:
       ejs: 3.1.10
       enquirer: 2.3.6
       ignore: 5.3.2
+      nx: 18.3.5(@swc-node/register@1.10.9)(@swc/core@1.7.11)
+      semver: 7.6.3
+      tmp: 0.2.3
+      tslib: 2.6.3
+      yargs-parser: 21.1.1
+    dev: true
+
+  /@nx/devkit@19.5.3(nx@18.3.5):
+    resolution: {integrity: sha512-OUi8OJkoT+y3LwXACO6ugF9l6QppUyHrBIZYOTffBa1ZrnkpJrw03smy+GhAt+BDoeNGEuOPHGvOSV4AmRxnmg==}
+    peerDependencies:
+      nx: '>= 17 <= 20'
+    dependencies:
+      '@nrwl/devkit': 19.5.3(nx@18.3.5)
+      ejs: 3.1.10
+      enquirer: 2.3.6
+      ignore: 5.3.2
+      minimatch: 9.0.3
       nx: 18.3.5(@swc-node/register@1.10.9)(@swc/core@1.7.11)
       semver: 7.6.3
       tmp: 0.2.3
@@ -7735,6 +7822,17 @@ packages:
     resolution: {integrity: sha512-VxPP4NqbUjj6MaAOafWeUn2cXWLcCtljklUtZf0Ind4XQ+QPtmA0b18zZy0jIQx+ExRVCR/ZQpBmik5lXshNsw==}
     dev: true
 
+  /fast-glob@3.2.12:
+    resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
+    engines: {node: '>=8.6.0'}
+    dependencies:
+      '@nodelib/fs.stat': 2.0.5
+      '@nodelib/fs.walk': 1.2.8
+      glob-parent: 5.1.2
+      merge2: 1.4.1
+      micromatch: 4.0.7
+    dev: true
+
   /fast-glob@3.2.7:
     resolution: {integrity: sha512-rYGMRwip6lUMvYD3BTScMwT1HtAs2d71SMv66Vrxs0IekGZEjhM0pcMfjQPnknBt2zeCwQMEupiN02ZP4DiT1Q==}
     engines: {node: '>=8'}
@@ -8646,6 +8744,27 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       through: 2.3.8
+    dev: true
+
+  /inquirer@8.2.6:
+    resolution: {integrity: sha512-M1WuAmb7pn9zdFRtQYk26ZBoY043Sse0wVDdk4Bppr+JOXyQYybdtvK+l9wUibhtjdjvtoiNy8tk+EgsYIUqKg==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      ansi-escapes: 4.3.2
+      chalk: 4.1.2
+      cli-cursor: 3.1.0
+      cli-width: 3.0.0
+      external-editor: 3.1.0
+      figures: 3.2.0
+      lodash: 4.17.21
+      mute-stream: 0.0.8
+      ora: 5.4.1
+      run-async: 2.4.1
+      rxjs: 7.8.1
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+      through: 2.3.8
+      wrap-ansi: 6.2.0
     dev: true
 
   /internal-slot@1.0.7:
@@ -12143,6 +12262,10 @@ packages:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
     dev: true
 
+  /sax@1.4.1:
+    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
+    dev: true
+
   /saxes@6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
     engines: {node: '>=v12.22.7'}
@@ -14043,6 +14166,12 @@ packages:
 
   /xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
+    dev: true
+
+  /xmldoc@1.3.0:
+    resolution: {integrity: sha512-y7IRWW6PvEnYQZNZFMRLNJw+p3pezM4nKYPfr15g4OOW9i8VpeydycFuipE2297OvZnh3jSb2pxOt9QpkZUVng==}
+    dependencies:
+      sax: 1.4.1
     dev: true
 
   /xtend@4.0.2:

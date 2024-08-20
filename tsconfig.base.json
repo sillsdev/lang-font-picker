@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@lfp/bloom-lfp": ["libs/bloom-lfp/src/index.ts"],
+      "@lfp/generated/lfp-api-types": [
+        "libs/generated/lfp-api-types/src/index.ts"
+      ],
       "@lfp/headless-lfp": ["libs/headless-lfp/src/index.ts"],
       "@lfp/unstyled-lfp": ["libs/unstyled-lfp/src/index.ts"]
     }

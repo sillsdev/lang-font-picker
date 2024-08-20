@@ -1,0 +1,14 @@
+{
+  "name": "generated-lfp-api-types",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/generated/lfp-api-types/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "nx:noop",
+      "outputs": ["{projectRoot}"]
+    }
+  },
+  "implicitDependencies": ["lfp-api-swagger"]
+}

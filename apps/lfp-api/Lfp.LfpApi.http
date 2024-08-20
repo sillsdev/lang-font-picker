@@ -1,0 +1,6 @@
+@Lfp.LfpApi_HostAddress = http://localhost:5222
+
+GET {{Lfp.LfpApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

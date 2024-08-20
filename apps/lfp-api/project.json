@@ -1,0 +1,17 @@
+{
+  "name": "lfp-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/lfp-api",
+  "tags": [],
+  "targets": {
+    "swagger": {
+      "executor": "@nx-dotnet/core:update-swagger",
+      "outputs": ["{workspaceRoot}/libs/generated/lfp-api-swagger"],
+      "options": {
+        "output": "libs/generated/lfp-api-swagger"
+      },
+      "dependsOn": ["build"]
+    }
+  }
+}

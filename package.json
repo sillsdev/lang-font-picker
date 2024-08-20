@@ -31,6 +31,7 @@
     "@nx/vite": "~18.3.5",
     "@nx/web": "~18.3.5",
     "@nx/workspace": "~18.3.5",
+    "@openapitools/openapi-generator-cli": "2.13.4",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
     "@storybook/core-server": "^8.2.9",

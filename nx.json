@@ -63,5 +63,22 @@
         "unitTestRunner": "vitest"
       }
     }
+  },
+  "targetDefaults": {
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "build": {
+      "dependsOn": ["^build", "codegen", "^codegen"],
+      "inputs": ["production", "^production"]
+    },
+    "codegen": {
+      "cache": true
+    },
+    "swagger": {
+      "cache": true
+    }
   }
 }

@@ -85,10 +85,10 @@ we've added proxies to bypass this issue in "development" (with `nx serve ...` a
 
 ### Serve app projects
 
-To serve `lang-font-picker` (our only app project):
+To serve an app project <project> (i.e., `lang-font-picker` or `lfp-api`):
 
 ```console
-nx serve lang-font-picker
+nx serve <project>
 ```
 
 Then open the link given in your console (http://localhost:4200/) to interact with the app in web browser.

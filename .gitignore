@@ -11,6 +11,7 @@ out/
 .eslintcache
 .npm
 .nx/cache/
+.nx/workspace-data/
 tmp
 *.tsbuildinfo
 

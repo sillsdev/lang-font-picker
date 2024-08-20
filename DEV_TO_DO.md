@@ -77,6 +77,8 @@
   - `.config/dotnet-tools.json`
   - `Directory.Build.props`
   - `Directory.Build.targets`
+- Also investigate the new `package.json` script:
+  - `"prepare": "nx g @nx-dotnet/core:restore",`
 - Try to get `nx g @nx-dotnet/core:app my-app --language C# --pathScheme nx --test-template none` to work
 
 ## Reference links

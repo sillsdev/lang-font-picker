@@ -24,7 +24,7 @@ Install [Nx](https://nx.dev/getting-started/installation#installing-nx-globally)
 pnpm add -g nx@18
 ```
 
-(Use Nx v18 because there are testing issues with v19.)
+(Use Nx v18 because tests hang with v19, which may be fixed >19.6.1).
 
 (If you choose not to install Nx globally, you will have to prefix `pnpm` to all `nx [...]` commands in this README. For example, `nx test lang-font-picker` becomes `pnpm nx test lang-font-picker`.)
 

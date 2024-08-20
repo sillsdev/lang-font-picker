@@ -69,7 +69,7 @@ pnpm build
 
 The build artifacts are stored in the output directory `dist/`.
 
-For a production preview of `lang-font-picker` (our only app project):
+For a production preview of `lang-font-picker` (our only React app project):
 
 ```console
 nx build lang-font-picker
@@ -91,7 +91,7 @@ To serve an app project <project> (i.e., `lang-font-picker` or `lfp-api`):
 nx serve <project>
 ```
 
-Then open the link given in your console (http://localhost:4200/) to interact with the app in web browser.
+Then open the link given in your console (http://localhost:4200 or http://localhost:5222) to interact with the app in web browser.
 
 The app will automatically update as you make changes to the code.
 

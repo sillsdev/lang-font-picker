@@ -1,7 +1,9 @@
 /** Font metadata as used inside the Language Font Picker (LFP). */
 export interface FontLFP {
-  name: string;
+  distributable?: boolean;
   isSelected?: boolean;
+  license?: string;
+  name: string;
 }
 
 /** Font metadata as received from the Language Font Finder (LFF).

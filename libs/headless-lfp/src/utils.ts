@@ -12,16 +12,15 @@ export async function fetchJSON(url: string): Promise<object> {
 }
 
 /** Default conversion of LFF font metadata to LFP font metadata. */
-export function convertToFontLFP(font: FontLFF): FontLFP {
-  const { defaultfamily, families } = font;
+export function convertToFontLFP(fonts: FontLFF): FontLFP[] {
+  const { defaultfamily, families } = fonts;
   if (!defaultfamily.length) {
-    return { name: "" };
+    return [{ name: "" }];
   }
 
-  const id = defaultfamily[0];
-  if (!(id in families)) {
-    return { name: id };
-  }
-
-  return { name: families[id].family };
+  return defaultfamily.map((id) => ({
+    distributable: families[id]?.distributable,
+    license: families[id]?.license,
+    name: id in families ? families[id].family : id,
+  }));
 }

@@ -14,7 +14,7 @@ export default defineConfig({
       // Avoid CORS blockage in development with `nx serve lang-font-picker`.
       "/lang": {
         changeOrigin: true,
-        target: "https://lff.api.languagetechnology.org",
+        target: "https://lff.languagetechnology.org",
       },
     },
   },

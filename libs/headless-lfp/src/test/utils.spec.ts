@@ -46,14 +46,13 @@ describe("convertToFontLFP", () => {
 describe("fetchJson", () => {
   it("throws error on non-JSON url", async () => {
     await expect(
-      async () =>
-        await fetchJSON("https://lff.api.languagetechnology.org/lang/1")
+      async () => await fetchJSON("https://lff.languagetechnology.org/lang/1")
     ).rejects.toThrow();
   });
 
   it("returns object when url returns valid JSON", async () => {
     const object: FontLFF = (await fetchJSON(
-      "https://lff.api.languagetechnology.org/lang/kfc"
+      "https://lff.languagetechnology.org/lang/kfc"
     )) as FontLFF;
     expect(object).toBeTruthy();
   });

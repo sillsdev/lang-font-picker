@@ -14,10 +14,6 @@ export async function fetchJSON(url: string): Promise<object> {
 /** Default conversion of LFF font metadata to LFP font metadata. */
 export function convertToFontLFP(fonts: FontLFF): FontLFP[] {
   const { defaultfamily, families } = fonts;
-  if (!defaultfamily.length) {
-    return [{ name: "" }];
-  }
-
   return defaultfamily.map((id) => ({
     distributable: families[id]?.distributable,
     license: families[id]?.license,

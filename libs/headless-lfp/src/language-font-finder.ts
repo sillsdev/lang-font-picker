@@ -28,7 +28,7 @@ const ErrorEmptyLanguages = "Cannot use empty language.";
 const LFFApiUrl =
   import.meta.env.MODE === "development"
     ? "lang/"
-    : "https://lff.api.languagetechnology.org/lang/";
+    : "https://lff.languagetechnology.org/lang/";
 
 /** Hook for interacting with https://github.com/silnrsi/langfontfinder. */
 export function useLanguageFontFinder(

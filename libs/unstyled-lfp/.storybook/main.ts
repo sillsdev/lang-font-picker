@@ -18,7 +18,7 @@ const config: StorybookConfig = {
         proxy: {
           "/lang": {
             changeOrigin: true,
-            target: "https://lff.api.languagetechnology.org",
+            target: "https://lff.languagetechnology.org",
           },
         },
       },

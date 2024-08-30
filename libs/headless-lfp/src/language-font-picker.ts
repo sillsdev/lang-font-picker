@@ -40,7 +40,8 @@ export function useLanguageFontPicker(
 
   const fetchFonts = useCallback(
     async (language: string) => {
-      const foundFonts = (await lff.findFonts(language)).map(convertToFontLFP);
+      const lffFonts = await lff.findFonts(language);
+      const foundFonts = lffFonts.flatMap(convertToFontLFP);
       const allFonts = [...foundFonts, ...(extraFonts ?? [])];
       setFonts(allFonts.slice(0, maxFontCount || undefined));
     },

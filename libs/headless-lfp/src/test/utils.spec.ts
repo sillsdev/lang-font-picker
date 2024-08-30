@@ -7,9 +7,9 @@ describe("convertToFontLFP", () => {
     defaultfamily: [],
     families: {},
   };
-  const mockId = "fontsans";
+  const mockId = "fontInFamilies";
   const mockName = "Font Sans";
-  const mockDefault = [mockId];
+  const mockDefault = [mockId, "fontOutOfFamilies"];
   const mockFamily: FontFamilyLFF = {
     distributable: false,
     familyid: mockId,
@@ -17,43 +17,36 @@ describe("convertToFontLFP", () => {
   };
   const mockFamilies = { [mockId]: mockFamily };
 
-  it("handles empty `defaultfamilies`", () => {
+  it("handles empty `defaultfamily`", () => {
     const fontLFP = convertToFontLFP({
       ...emptyFontLFF,
       families: mockFamilies,
     });
-    expect(fontLFP.name).toEqual("");
+    expect(fontLFP).toHaveLength(0);
   });
 
-  it("handles empty `families`", () => {
-    const fontLFP = convertToFontLFP({
-      ...emptyFontLFF,
-      defaultfamily: mockDefault,
-    });
-    expect(fontLFP.name).toEqual(mockId);
-  });
-
-  it("gets font name", () => {
+  it("handles some but not all ids in `families`", () => {
     const fontLFP = convertToFontLFP({
       ...emptyFontLFF,
       defaultfamily: mockDefault,
       families: mockFamilies,
     });
-    expect(fontLFP.name).toEqual(mockName);
+    expect(fontLFP).toHaveLength(mockDefault.length);
+    expect(fontLFP[0].name).toEqual(mockName);
+    expect(fontLFP[1].name).toEqual(mockDefault[1]);
   });
 });
 
 describe("fetchJson", () => {
   it("throws error on non-JSON url", async () => {
     await expect(
-      async () =>
-        await fetchJSON("https://lff.api.languagetechnology.org/lang/1")
+      async () => await fetchJSON("https://lff.languagetechnology.org/lang/1")
     ).rejects.toThrow();
   });
 
   it("returns object when url returns valid JSON", async () => {
     const object: FontLFF = (await fetchJSON(
-      "https://lff.api.languagetechnology.org/lang/kfc"
+      "https://lff.languagetechnology.org/lang/kfc"
     )) as FontLFF;
     expect(object).toBeTruthy();
   });
